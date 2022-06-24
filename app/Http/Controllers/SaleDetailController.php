@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 
+use App\Models\Sale;
 use Illuminate\Http\Request;
 
 use App\Models\SaleDetail;
@@ -64,34 +65,32 @@ class SaleDetailController extends Controller
     {
 
 
-        $price = DB::table("sale_details")
-            ->where("medicinedetail_id", $request->medicinedetail_id);
-        $price = SaleDetail::query()->where('medicinedetail_id', $request->medicinedetail_id)->first()->price;
+        //$price = DB::table("sale_details")            ->where("medicinedetail_id", $request->medicinedetail_id);
+
+        //$price = SaleDetail::query()->where('medicinedetail_id', $request->medicinedetail_id)->first()->price;
+        $price = MedicineDetail::findOrFail($request->input('medicinedetail_id'))->price;
         return response()->json($price);
     }
 
 
     public function store(Request $request)
     {
-
         $request->validate([
-            'appointment_id' => 'required',
-            // 'medicinedetail_id'=>'required',
-            // 'price'=>'required',
-            // 'quantity'=>'required',
-            // 'amount'=>'required',
-            'date' => 'required',
+            'appointment_id' => 'required'
         ]);
 
-
-        ////////
 
 
         $q_datas =  MedicineDetail::with(['medicinename' => function ($q) {
             $q->select('id', 'name');
         }])->whereIn('id', $request->medicinedetail_id)->select('quantity', 'medicinename_id')->where('quantity', '<', 21)->get();
 
-        // return $q_datas;
+
+
+        $sale = Sale::create([
+            'appointment_id' => $request->input('appointment_id'),
+            'total' => 0.00
+        ]);
 
 
         if ($q_datas->isEmpty()) {
@@ -113,22 +112,11 @@ class SaleDetailController extends Controller
                     $created = SaleDetail::create($data);
                     $id[] =  $created->id;
 
-                    MedicineDetail::where('id', $request->medicinedetail_id)->decrement('quantity', $request->quantity[$i]);
-                 
+                    MedicineDetail::where('id', $request->medicinedetail_id[$i])->decrement('quantity', $request->quantity[$i]);
                 }
 
-        
-                // return $id;
-                //  $data=[
-                // 'customer_id'=>$request->input('customer_id'),
-                // 'medicinedetail_id'=>$request->input('medicinedetail_id'),
-                // 'price'=>$request->input('price'),
-                // 'quantity'=>$request->input('quantity'),
-                // 'amount'=>$request->input('amount'),
-                // 'date'=>$request->input('date'),
-                // ];
 
-                // SaleDetail::create($data);
+
 
 
                 return redirect()->route('saledetail.index');
@@ -153,7 +141,7 @@ class SaleDetailController extends Controller
         try {
             $request->validate([
                 //'appointment_id'=>'required',
-                //'saleman_id'=>'required', 
+                //'saleman_id'=>'required',
                 //'productcategory_id'=>'required',
                 'price' => 'required',
                 'quantity' => 'required',

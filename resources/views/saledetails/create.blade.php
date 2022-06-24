@@ -46,7 +46,7 @@
           </select>
         </div>
 
-     
+
         <div class="mb-3">
           <select class="form-select medicine select2" name="medicinedetail_id[]"  id="medicine">
           <option value="" selected disabled>Select Medicine</option>
@@ -96,10 +96,10 @@
   function multipleRowInsert(){
     var len = $('#multipleRow').children().length;
     console.log(len);
-    var htmlForm = ''; 
+    var htmlForm = '';
     htmlForm +='<div id="inputRows">';
     htmlForm +='    <div class="mb-3">';
-    htmlForm +='      <select class="form-select medicine" name="medicinedetail_id[]" id="mdata" onchange="myFunction()">';
+    htmlForm +='      <select class="form-select medicine medicineId" name="medicinedetail_id[]" onchange="myFunction()">';
     htmlForm +='      <option value="" selected disabled>Select Medicine</option>';
     htmlForm +='      @foreach($medicinedetails as $item)';
     htmlForm +='      <option id="{{$item->id}}" value="{{$item->id}}">{{$item->medicinename->name}}</option>';
@@ -128,9 +128,9 @@
 </script>
 
 <script>
-  $(document).on('click','#removeRow', function () { 
+  $(document).on('click','#removeRow', function () {
     $(this).closest('#inputRows').remove();
-    
+
   });
 </script>
 
@@ -144,7 +144,7 @@
     });
   });
   </script>
-{{-- 
+{{--
 <script type="text/javascript">
   $(document).ready(function(){
     $('#medicine').select2({
@@ -164,36 +164,38 @@ $(document).ready(function() {
       placeholder: "select Medicine",
       allowClear: true
     }).on("change", function(){
-       var medicineID = $(this).val();  
-     
+       var medicineID = $(this).val();
+
       if(medicineID){
     $.ajax({
       type:"GET",
       url:"{{url('getprice')}}?medicinedetail_id="+medicineID,
-      success:function(res){        
+      success:function(res){
       if(res){
-      
+
        $("#price1").val(res);
        console.log(res);
-    
-      
+
+
       }else{
-      
+
       }
       }
     });
   }else{
-    
+
     $("#price").empty();
   }
-       
+
     });
 });
 </script>
 
 <script>
   function myFunction() {
-  var medicineID = document.getElementById("mdata").value;
+
+  //var medicineID = document.getElementById("mdata").value;
+  let medicineID = $(".medicineId").val();
 
   // console.log(selectElement.options[selectElement.selectedIndex]);
     // console.log(x);
@@ -202,20 +204,15 @@ $(document).ready(function() {
     $.ajax({
       type:"GET",
       url:"{{url('getprice')}}?medicinedetail_id="+medicineID,
-      success:function(res){        
+      success:function(res){
       if(res){
-      
-       $(".price").val(res);
-       console.log(res);
-    
-      
-      }else{
-      
+          $(".price").val(res);
       }
+       console.log(res);
       }
     });
   }else{
-    
+
     $("#price").empty();
   }
 }

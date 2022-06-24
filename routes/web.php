@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\SaleController;
+use App\Http\Controllers\SaleItemController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -102,6 +104,11 @@ Route::get('/saledetails/delete/{id}',[App\Http\Controllers\SaleDetailController
 Route::get('/sales',[App\Http\Controllers\PrintSaleController::class, 'index']);
 
 Route::get('/sale_prnpriview/{cus_id}',[App\Http\Controllers\PrintSaleController::class, 'prnpriview'])->name('print.sale');
+
+
+Route::resource('sale', SaleController::class);
+Route::get('sale-print/{sale}', [SaleController::class, 'print'])->name('sale.print');
+Route::resource('sale-item', SaleItemController::class);
 
 Route::get('getprice', [App\Http\Controllers\SaleDetailController::class,'getprice'])->name('getprice');
 
