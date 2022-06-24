@@ -116,7 +116,7 @@ class SaleController extends Controller
                 DB::commit();
 
                 Toastr::success('Create Success', 'Success', ["positionClass" => "toast-top-center"]);
-                return redirect()->route('saledetail.index');
+                return redirect()->route('sale.index');
             } catch (\Exception $exception) {
                 DB::rollBack();
                 Toastr::error($exception->getMessage());

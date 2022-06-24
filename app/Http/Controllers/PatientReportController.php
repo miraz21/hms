@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 
+use App\Models\Sale;
 use App\Models\TestInfo;
 
 use Illuminate\Http\Request;
@@ -64,6 +65,8 @@ class PatientReportController extends Controller
 
        $ap =  Appointment::where('id',$request->id)->select('appoint_name','phone','date')->first();
 
-        return view('patientreport.index',compact('ap','tests','test_total','medicines','grand_total','total_pay','due_amount'));
+        $sales = Sale::query()->where('appointment_id', $request->id)->get();
+
+        return view('patientreport.index',compact('ap','tests','test_total','medicines','grand_total','total_pay','due_amount', 'sales'));
     }
 }

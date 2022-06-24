@@ -44,7 +44,7 @@
 
                         <th></th>
                         <th class="text-right">Total</th>
-                        <th >{{ $sale->sum('total') }}</th>
+                        <th >{{ $sales->sum('total') }}</th>
                         <th></th>
                     </tr>
                     </tfoot>

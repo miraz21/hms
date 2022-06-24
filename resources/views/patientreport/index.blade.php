@@ -43,7 +43,7 @@
         <th></th>
         <th>Total: {{ $test_total ?? '' }}
 			<th>
-	
+
     </tr>
 	</tfoot>
 	<tbody>
@@ -59,7 +59,7 @@
 	</tbody>
 	</table>
 	</div>
-	
+
 	<div class="col-6 col-md-6">
 	<p style="text-align:center;">Pharmacy Report</p>
 	<table class="table table-border">
@@ -71,27 +71,27 @@
 	<th>Amount</th>
 	</tr>
 	</thead>
-	<tfoot>	
+	<tfoot>
     <tr>
 		<th></th>
 		<th></th>
 		<th></th>
-		<th>Total:{{ $medicines->sum('amount') ?? '' }}</th>
+		<th>Total:{{ number_format($sales->sum('total') ) }}</th>
     </tr>
 	</tfoot>
 	<tbody>
-	<tr>
-		<tr>
-			@foreach ($medicines as $m)
-			<tr>
-			<th>{{ $loop->iteration }}</th>
-			<th>{{ $m->medicinedetail->medicinename->name ?? '' }}</th>
-			<th>{{ $m->quantity ?? '' }}</th>
-			<th>{{ $m->amount ?? '' }}</th>
-			</tr>
-			@endforeach
-		</tr>
-	</tr>
+    @php($index=1)
+			@foreach($sales  as $sale)
+
+                @foreach ($sale->item as $m)
+                    <tr>
+                        <th>{{$index++}}</th>
+                        <th>{{ $m->medicinedetail->medicinename->name ?? '' }}</th>
+                        <th>{{ $m->quantity ?? '' }}</th>
+                        <th>{{ $m->amount ?? '' }}</th>
+                    </tr>
+                @endforeach
+            @endforeach
 	</tbody>
 	</table>
 	</div>
@@ -125,7 +125,7 @@
 		@if ($due_amount == 0)
 		<p style="text-align:center;">----Paid----</p>
 		@endif
-	
+
 	</div>
 	</div>
 
