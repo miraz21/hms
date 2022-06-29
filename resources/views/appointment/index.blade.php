@@ -26,7 +26,9 @@
 			      <th scope="col">AGE</th>
 			      <th scope="col">Problem</th>
 			      <th scope="col">Doctor & speciality</th>
+				  <th scope="col">Room</th>
                   <th scope="col">Fee</th>
+				  <th scope="col">Discount</th>
                   <th scope="col">Date</th>
 			      <th scope="col">Action</th>
 	            </tr>
@@ -48,7 +50,14 @@
 		      <td>{{$appointment->problem}}</td>
 		      <td>{{$appointment->doctor}}</td> 
               <td>{{$appointment->room}}</td> 
-              <td>{{$appointment->appointment_fee}}</td> 
+			 
+			  @if ($appointment->discount==null)
+			      $appointment->appointment_fee  
+			  @else
+			  <td>{{$appointment->appointment_fee - $appointment->discount }}</td>
+			  @endif
+			  
+			  <td>{{$appointment->discount}}</td> 
               <td>{{$appointment->date}}</td>
 		      <td>
 		      	<!-- <a href=""class="btn btn-primary">Edit</a> -->

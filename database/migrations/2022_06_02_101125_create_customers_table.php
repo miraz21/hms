@@ -16,7 +16,8 @@ class CreateCustomersTable extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('appointment_id');
-            $table->decimal('total')->nullable();
+            $table->unsignedBigInteger('sale_id');
+            $table->decimal('discount')->nullable();
             $table->decimal('pay_amount')->nullable();
             $table->decimal('due_amount')->nullable();
             $table->timestamps();

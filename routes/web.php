@@ -107,10 +107,13 @@ Route::get('/sale_prnpriview/{cus_id}',[App\Http\Controllers\PrintSaleController
 
 
 Route::resource('sale', SaleController::class);
+
 Route::get('sale-print/{sale}', [SaleController::class, 'print'])->name('sale.print');
+
 Route::resource('sale-item', SaleItemController::class);
 
 Route::get('getprice', [App\Http\Controllers\SaleDetailController::class,'getprice'])->name('getprice');
+
 
 Route::get('getappointment', [App\Http\Controllers\SaleDetailController::class,'getData'])->name('getappointment');
 
@@ -145,6 +148,8 @@ Route::get('/customers/create',[App\Http\Controllers\CustomerController::class, 
 Route::post('/customers/create',[App\Http\Controllers\CustomerController::class, 'store'])->name('customer.store');
 
 Route::get('/customers/delete/{id}',[App\Http\Controllers\CustomerController::class, 'delete'])->name('customer.delete');
+
+Route::get('gettotal', [App\Http\Controllers\CustomerController::class,'gettotal'])->name('gettotal');
 
 
 

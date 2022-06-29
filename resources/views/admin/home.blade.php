@@ -191,7 +191,7 @@
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{route('saleman.index')}}">Sale Man</a>
-                        <a class="collapse-item" href="{{route('saledetail.index')}}">Sales Details</a>
+                        <a class="collapse-item" href="{{route('sale.index')}}">Sales Details</a>
                         <a class="collapse-item" href="{{route('returnmedicine.index')}}">Return Medicine</a>
                     </div>
                 </div>
@@ -201,12 +201,12 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
                     aria-expanded="true" aria-controls="collapseFive">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Customer Details</span>
+                    <span>Customer Payment Info</span>
                 </a>
                 <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{route('customer.index')}}">Customer Balance</a>
-                        <a class="collapse-item" href="{{route('addcustomerbalance.index')}}">Customer Payment</a>
+                        <a class="collapse-item" href="{{route('customer.index')}}">Customer Payment</a>
+                        <a class="collapse-item" href="{{route('addcustomerbalance.index')}}">Customer Due Payment</a>
                     </div>
                 </div>
             </li>
@@ -424,10 +424,7 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                               <li><a class="dropdown-item" href="#">Profile</a></li>
                               <li>
-
-
-
-                                <a class="dropdown-item" href="javascript:;" onclick="document.getElementById('logout').submit()">Logout</a>
+                            <a class="dropdown-item" href="javascript:;" onclick="document.getElementById('logout').submit()">Logout</a>
                             <form action="{{ route('logout') }}" id="logout" method="post">@csrf</form>
                             </li>
                             </ul>

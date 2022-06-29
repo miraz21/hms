@@ -22,7 +22,9 @@
 	              <th>ID</th>
 	              <th>Customer Name</th>
 				  <th>Phone</th>
-                  <th>Total</th>
+				  <th>Sale Document</th>
+				  <th>Total</th>
+				  <th>Discount</th>
                   <th>Payment</th>
                   <th>Due</th>
 	              <!-- <th class="text-right">Actions</th> -->
@@ -41,7 +43,9 @@
 		              <td> {{ $customer->id }} </td>
 		              <td> {{ $customer->appointment->appoint_name }} </td>
 					  <td> {{ $customer->appointment->phone }} </td>
-                      <td> {{ $customer->total }} </td>
+					  <td> {{ $customer->sale->invoice_no }} </td>
+					  <td> {{ $customer->sale->total }} </td>
+					  <td> {{ $customer->discount }} </td>
                       <td> {{ $customer->pay_amount }} </td>
                       <td> {{ $customer->due_amount }} </td>
 		              <td class="text-right">

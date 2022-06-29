@@ -5,7 +5,7 @@
     <div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md-8">
-	<h3 class="text-center mt-3">Create Customer Document</h3>
+	<h3 class="text-center mt-3">Add Customer Payment</h3>
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -30,8 +30,20 @@
     <input type="text" readonly class="form-control" id="phone">
   </div>
   <div class="mb-3">
+    <select class="form-select" name="sale_id" id="sale_id">
+      <option value=" ">Select Sale Info</option>
+      @foreach($appointment as $item)
+      <option value="{{$item->id}}">{{$item->invoice_no}}</option>
+      @endforeach
+      </select>
+    </div>
+  <div class="mb-3">
     <label for="total" class="form-label">Total</label>
-    <input type="number" name="total" class="form-control" id="total">
+    <input type="number" readonly name="total" class="form-control" id="total">
+  </div>
+ <div class="mb-3">
+    <label for="discount" class="form-label">Discount</label>
+    <input type="number" name="discount" class="form-control" id="discount">
   </div>
   <div class="mb-3">
     <label for="pay_amount" class="form-label">Payment Amount</label>
@@ -98,5 +110,42 @@
     });
   });
   </script>
+
+{{-- <script type="text/javascript">
+  $(document).ready(function(){
+      $("[id=sale_id]").select2({
+      placeholder: "select Sale Info",
+      allowClear: true
+    }).on('change',function(){
+      var sale_id = $(this).val();  
+
+  if(sale_id){
+    $.ajax({
+      type:"GET",
+      url:"{{url('gettotal')}}?id="+sale_id,
+      success:function(res){        
+      if(res){
+       $("#total").val(res.total);
+    
+      }else{
+      
+      }
+      }
+    });
+  }else{
+    
+    $("#total").empty();
+  }   
+    });
+  });
+  </script> --}}
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#sale_id').select2({
+        placeholder: "select Info",
+        allowClear: true
+      });
+    });
+    </script>
 
 @endsection

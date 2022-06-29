@@ -32,4 +32,14 @@
 </div>
 </div>
 </div>
+
+   <script type="text/javascript">
+    $(document).ready(function(){
+      $('#name').select2({
+        placeholder: "select patient",
+        allowClear: true
+      });
+    });
+    </script>
+
 @endsection

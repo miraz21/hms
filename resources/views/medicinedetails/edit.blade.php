@@ -15,12 +15,6 @@
 @endif
 <form action="{{route('medicinedetail.edit',$medicinedetail->id)}}" method="post" enctype="multipart/form-data">
 @csrf 
- <!-- <div class="mb-3">
-    <label for="title" class="form-label">Medicine Company</label>
-    <select class="form-select">
-      <option value="">{{$medicinedetail->medicinecompany->title}}</option>
-    </select>
-  </div> -->
   <div class="mb-3">
     <label for="name" class="form-label">Medicine Name</label>
     <select class="form-select">
@@ -39,7 +33,7 @@
     <label for="quantity" class="form-label">Quantity</label>
     <input type="number" name="quantity" class="form-control" id="quantity" value="{{$medicinedetail->quantity}}">
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Update</button>
 </form>
 </div>
 </div>

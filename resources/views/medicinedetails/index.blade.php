@@ -33,7 +33,7 @@
 			      <th scope="col">Price</th>
 			      {{-- <th scope="col">Discount</th> --}}
 			      <th scope="col">Quantity</th>
-			      {{-- <th scope="col">Action</th> --}}
+			      <th scope="col">Action</th>
 	            </tr>
 	          </thead>
 	          <tfoot>
@@ -52,7 +52,7 @@
 		      {{-- <td>{{number_format($medicinedetail->discount, 2)}}</td> --}}
 		      <td>{{number_format($medicinedetail->quantity)}}</td> 
 		      <td>
-		      	{{-- <a href="{{route('medicinedetail.edit', $medicinedetail->id)}}"class="btn btn-primary">Edit</a> --}}
+		      <a href="{{route('medicinedetail.edit', $medicinedetail->id)}}"class="btn btn-primary">Edit</a>
 		      	<!-- <a href="{{route('medicinedetail.delete', $medicinedetail->id)}}"class="btn btn-warning">Delete</a> -->
 		      </td> 
 		    </tr>

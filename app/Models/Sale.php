@@ -24,6 +24,10 @@ class Sale extends Model
     {
         return $this->belongsTo(Appointment::class);
     }
+    public function customers()
+    {
+     return $this->hasMany(Customer::class);
+    }
 
 
 }

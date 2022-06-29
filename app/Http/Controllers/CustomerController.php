@@ -8,6 +8,10 @@ use App\Models\Customer;
 
 use App\Models\SaleDetail;
 
+use App\Models\Sale;
+
+use App\Models\SaleItem;
+
 use App\Models\Appointment;
 
 use Illuminate\Support\Facades\Auth;
@@ -39,9 +43,10 @@ class CustomerController extends Controller
       public function create()
       {
           $appointment=Appointment::all();
-          $saledetails=SaleDetail::all();
+          $saleitems=SaleItem::all();
+          $sales=Sale::all();
           $customer=Customer::all();
-          return view('customers.create', compact('saledetails','appointment'));
+          return view('customers.create', compact('saleitems','appointment','sales'));
       }
   
       public function store(Request $request)
@@ -49,14 +54,16 @@ class CustomerController extends Controller
           try{
           $request->validate([
           'appointment_id'=>'required',
-          'total'=>'required',
+          'sale_id'=>'required',
+          'discount'=>'required',
           'pay_amount'=>'required',
           'due_amount'=>'required',
            ]);
   
            $data=[
           'appointment_id'=>$request->input('appointment_id'),
-          'total'=>$request->input('total'),
+          'sale_id'=>$request->input('sale_id'),
+          'discount'=>$request->input('discount'),
           'pay_amount'=>$request->input('pay_amount'),
           'due_amount'=>$request->input('due_amount'),
           ];
@@ -77,5 +84,12 @@ class CustomerController extends Controller
   
           $customer->delete();
           return redirect()->back();
+      }
+
+      public function gettotal(Request $request)
+      {
+          $app = Sale::where('id', $request->id)->select('total')->first();
+          return response()->json($app);
+          //   dd($request->all());
       }
 }

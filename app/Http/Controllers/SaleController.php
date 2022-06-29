@@ -102,7 +102,8 @@ class SaleController extends Controller
                         'quantity' => $request->quantity[$i],
                         'amount' => $request->amount[$i]
                     ];
-                    $created = SaleItem::create($data);
+                    
+                    $created=SaleItem::create($data);
                     $id[] =  $created->id;
 
                     $totalAmount+= $request->amount[$i];

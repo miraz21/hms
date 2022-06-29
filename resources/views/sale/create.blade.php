@@ -99,7 +99,7 @@
             var htmlForm = '';
             htmlForm +='<div id="inputRows">';
             htmlForm +='    <div class="mb-3">';
-            htmlForm +='      <select class="form-select medicine medicineId" name="medicinedetail_id[]" onchange="myFunction()">';
+            htmlForm +='      <select class="form-select medicine medicineId'+ (len+1) +'" name="medicinedetail_id[]" onchange="myFunction('+ (len+1) +')">';
             htmlForm +='      <option value="" selected disabled>Select Medicine</option>';
             htmlForm +='      @foreach($medicinedetails as $item)';
             htmlForm +='      <option id="{{$item->id}}" value="{{$item->id}}">{{$item->medicinename->name}}</option>';
@@ -192,10 +192,10 @@
     </script>
 
     <script>
-        function myFunction() {
+        function myFunction(serial) {
 
             //var medicineID = document.getElementById("mdata").value;
-            let medicineID = $(".medicineId").val();
+            let medicineID = $(".medicineId"+serial).val();
 
             // console.log(selectElement.options[selectElement.selectedIndex]);
             // console.log(x);
@@ -206,7 +206,7 @@
                     url:"{{url('getprice')}}?medicinedetail_id="+medicineID,
                     success:function(res){
                         if(res){
-                            $(".price").val(res);
+                            $("#price"+serial).val(res);
                         }
                         console.log(res);
                     }
