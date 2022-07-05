@@ -31,7 +31,7 @@
 		      <th scope="row">{{$key+1}}</th>
 		      <td>{{$returnmedicine->medicinedetail->medicinename->name}}</td>
 		      <td>{{$returnmedicine->quantity}}</td> 
-              <td>{{$returnmedicine->date}}</td>
+              <td>{{ \Carbon\Carbon::parse($returnmedicine->created_at)->format('d-m-Y') }}</td>
 		    </tr>
 
 			

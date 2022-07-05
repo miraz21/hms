@@ -44,7 +44,7 @@
 		      <td>{{$buymedicine->medicinedetails?$buymedicine->medicinedetails->medicinename->name:''}}</td>
 		      <td>{{$buymedicine->quantity}}</td> 
               <td>{{number_format($buymedicine->amount)}}</td>
-		      <td>{{$buymedicine->date}}</td>
+		      <td>{{ \Carbon\Carbon::parse($buymedicine->created_at)->format('d-m-Y') }}</td>
 		      <td>
 		      	<!-- <a href="{{route('buymedicine.delete', $buymedicine->id)}}"class="btn btn-warning">Delete</a> -->
 		      </td> 

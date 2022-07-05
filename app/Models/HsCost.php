@@ -13,6 +13,6 @@ class HsCost extends Model
         'name',
         'reason',
         'amount',
-        'date',
+        // 'date',
     ];
 }

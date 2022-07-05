@@ -18,7 +18,7 @@ class CreateReturnMedicinesTable extends Migration
             $table->unsignedBigInteger('appointment_id');
             $table->unsignedBigInteger('medicinedetail_id');
             $table->decimal('quantity')->nullable();
-            $table->text('date')->nullable();
+            // $table->text('date')->nullable();
             $table->timestamps();
         });
     }

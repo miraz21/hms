@@ -38,10 +38,10 @@
     <label for="quantity" class="form-label">Quantity</label>
     <input type="number" name="quantity[]" class="form-control" id="quantity">
   </div>
-   <div class="mb-3">
+   {{-- <div class="mb-3">
     <label for="date" class="form-label">Date</label>
     <input type="date" name="date" class="form-control" id="date" >
-  </div>
+  </div> --}}
 </div>
 </div>
   <button type="submit" class="btn btn-primary">Submit</button>

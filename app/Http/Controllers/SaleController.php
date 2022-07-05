@@ -3,19 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
+
 use App\Models\MedicineDetail;
+
 use App\Models\MedicineName;
+
 use App\Models\Sale;
+
 use App\Models\SaleDetail;
+
 use App\Models\SaleItem;
+
 use Brian2694\Toastr\Facades\Toastr;
+
 use Illuminate\Contracts\Foundation\Application;
+
 use Illuminate\Contracts\View\Factory;
+
 use Illuminate\Contracts\View\View;
+
 use Illuminate\Http\RedirectResponse;
+
 use Illuminate\Http\Request;
+
 use Illuminate\Http\Response;
+
 use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\DB;
 
 class SaleController extends Controller
@@ -25,7 +39,14 @@ class SaleController extends Controller
      *
      * @return Application|Factory|View|RedirectResponse
      */
-    public function index()    {
+    public function index(Request $request)
+    {
+        if ($request->ajax()) {
+            return response()->json([
+                'sales' => Sale::where('appointment_id', $request->id)->orderBy('id', 'desc')->get(),
+                'status' => 1,
+            ]);
+        }
         if (Auth::check()) {
             if (Auth::user()->usertype == 1) {
 
@@ -36,7 +57,6 @@ class SaleController extends Controller
 
                 $sales = Sale::with(['item'])->orderBy('id', 'desc')->paginate(10);
                 return view('sale.index', compact('sales'));
-
             } else {
                 return redirect()->back();
             }
@@ -75,7 +95,7 @@ class SaleController extends Controller
 
         $q_datas =  MedicineDetail::with(['medicinename' => function ($q) {
             $q->select('id', 'name');
-        }])->whereIn('id', $request->medicinedetail_id)->select('quantity', 'medicinename_id')->where('quantity', '<', 21)->get();
+        }])->whereIn('id', $request->medicinedetail_id)->select('quantity', 'medicinename_id')->where('quantity', '<', 10)->get();
 
 
         DB::beginTransaction();
@@ -83,6 +103,7 @@ class SaleController extends Controller
 
         $sale = Sale::create([
             'appointment_id' => $request->input('appointment_id'),
+            'invoice_no' => '000',
             'total' => 0.00
         ]);
 
@@ -102,30 +123,31 @@ class SaleController extends Controller
                         'quantity' => $request->quantity[$i],
                         'amount' => $request->amount[$i]
                     ];
-                    
-                    $created=SaleItem::create($data);
+
+                    $created = SaleItem::create($data);
                     $id[] =  $created->id;
 
-                    $totalAmount+= $request->amount[$i];
+                    $totalAmount += $request->amount[$i];
 
                     MedicineDetail::where('id', $request->medicinedetail_id[$i])->decrement('quantity', $request->quantity[$i]);
                 }
 
                 $sale->update([
-                    'total' => $totalAmount
+                    'total' => $totalAmount,
+                    'invoice_no' => "RMGH" . str_pad("", 6, "0", STR_PAD_LEFT) . $sale->id,
                 ]);
                 DB::commit();
 
                 Toastr::success('Create Success', 'Success', ["positionClass" => "toast-top-center"]);
                 return redirect()->route('sale.index');
-            } catch (\Exception $exception) {
+                } catch (\Exception $exception) {
                 DB::rollBack();
                 Toastr::error($exception->getMessage());
                 return redirect()->back()->withErrors($exception->getMessage());
             }
         } else {
             Toastr::error("Quantity is running low");
-         return back();
+            return back();
         }
     }
 

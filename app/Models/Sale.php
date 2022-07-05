@@ -13,6 +13,7 @@ class Sale extends Model
     protected $fillable = [
         'appointment_id',
         'total',
+        'invoice_no',
     ];
 
     public function item(): HasMany
@@ -28,6 +29,11 @@ class Sale extends Model
     {
      return $this->hasMany(Customer::class);
     }
+    public function addcustomerbalances()
+    {
+     return $this->hasMany(AddCustomerBalance::class);
+    }
 
 
 }
+

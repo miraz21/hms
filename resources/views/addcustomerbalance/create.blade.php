@@ -5,7 +5,7 @@
     <div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md-8">
-	<h3 class="text-center mt-3">Add Customer Payment</h3>
+	<h3 class="text-center mt-3">Add Due Payment</h3>
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -26,18 +26,26 @@
     </select>
   </div>
   <div class="mb-3">
+    <select onchange="saleAmount(this)" class="form-select" name="sale_id" id="sale_id">
+        <option value=" ">Select Sale Info</option>
+        @foreach ($appointment as $item)
+            <option value="{{ $item->id }}">{{ $item->invoice_no }} -- {{ $item->total }}</option>
+        @endforeach
+    </select>
+</div> 
+  {{-- <div class="mb-3">
     <label for="total" class="form-label">Total</label>
     <input type="number" name="total" class="form-control" id="total">
-  </div>
+  </div> --}}
   <div class="mb-3">
     <label for="pay_amount" class="form-label">Payment Amount</label>
     <input type="number" name="pay_amount" class="form-control" id="pay_amount">
   </div>
 
-  <div class="mb-3">
+  {{-- <div class="mb-3">
     <label for="date" class="form-label">Date</label>
     <input type="date" name="date" class="form-control" id="date" >
-  </div>
+  </div> --}}
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>

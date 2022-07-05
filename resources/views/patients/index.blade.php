@@ -50,7 +50,7 @@
 		      <td>{{number_format($patient->total)}}</td>
 			  <td>{{number_format($patient->pay_amount)}}</td>
 			  <td>{{number_format($patient->due_amount)}}</td>
-		      <td>{{$patient->date}}</td> 
+		      <td>{{ \Carbon\Carbon::parse($patient->created_at)->format('d-m-Y') }}</td> 
 		      <td>
 		      	{{-- <a href="" class="btn btn-primary">Edit</a> --}}
 		      	<!-- <a href="{{route('patient.delete', $patient->id)}}" class="btn btn-warning">Delete</a> -->

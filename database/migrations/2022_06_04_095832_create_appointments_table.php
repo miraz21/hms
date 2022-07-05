@@ -22,8 +22,8 @@ class CreateAppointmentsTable extends Migration
             $table->string('doctor')->nullable();
             $table->string('room')->nullable();
             $table->decimal('appointment_fee')->nullable();
-            $table->decimal('discount')->nullable();
-            $table->text('date')->nullable();
+            // $table->decimal('discount')->nullable();
+            // $table->text('date')->nullable();
             $table->timestamps();
         });
     }

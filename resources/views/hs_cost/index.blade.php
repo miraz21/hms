@@ -41,7 +41,7 @@
 		              <td> {{ $hscost->name }} </td>
                       <td> {{ $hscost->reason }} </td>
                       <td> {{ $hscost->amount }} </td>
-                      <td> {{ $hscost->date }} </td>
+                      <td> {{ \Carbon\Carbon::parse($hscost->created_at)->format('d-m-Y') }} </td>
 		              <td class="text-right">
 		             <!-- <a class="btn btn-danger" href="{{route('hscost.delete', $hscost->id)}}">Delete</a> -->
 		              </td>

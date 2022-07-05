@@ -13,7 +13,7 @@ class BuyMedicine extends Model
         'medicinedetail_id',
         'quantity',
         'amount',
-        'date',
+        // 'date',
     ];
 
     

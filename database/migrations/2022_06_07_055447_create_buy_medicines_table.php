@@ -18,7 +18,7 @@ class CreateBuyMedicinesTable extends Migration
             $table->unsignedBigInteger('medicinedetail_id');
             $table->decimal('quantity')->nullable();
             $table->decimal('amount')->nullable();
-            $table->text('date')->nullable();
+            // $table->text('date')->nullable();
             $table->timestamps();
         });
     }

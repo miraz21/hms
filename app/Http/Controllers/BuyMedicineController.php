@@ -48,14 +48,14 @@ class BuyMedicineController extends Controller
           'medicinedetail_id'=>'required',
           'quantity'=>'required',
           'amount'=>'required',
-          'date'=>'required',
+        //   'date'=>'required',
            ]);
   
            $data=[
           'medicinedetail_id'=>$request->input('medicinedetail_id'),
           'quantity'=>$request->input('quantity'),
           'amount'=>$request->input('amount'),
-          'date'=>$request->input('date'),
+        //   'date'=>$request->input('date'),
           ];
   
           BuyMedicine::create($data);

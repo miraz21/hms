@@ -13,6 +13,7 @@ class Customer extends Model
         'appointment_id',
         'sale_id',
         'discount',
+        // 'total',
         'pay_amount',
         'due_amount',
     ];

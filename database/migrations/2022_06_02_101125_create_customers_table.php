@@ -18,6 +18,7 @@ class CreateCustomersTable extends Migration
             $table->unsignedBigInteger('appointment_id');
             $table->unsignedBigInteger('sale_id');
             $table->decimal('discount')->nullable();
+            // $table->decimal('total')->nullable();
             $table->decimal('pay_amount')->nullable();
             $table->decimal('due_amount')->nullable();
             $table->timestamps();

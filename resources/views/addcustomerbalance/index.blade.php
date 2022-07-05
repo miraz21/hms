@@ -2,7 +2,7 @@
 @section('content')
 	<div class="row clearfix page_header">
 		<div class="col-md-6">
-			<h2> Customer Payment Document </h2>		
+			<h2> Payment Document </h2>		
 		</div>
 		<div class="col-md-6 text-right">
 			<a class="btn btn-info" href="{{ route('addcustomerbalance.create') }}"> <i class="fa fa-plus"></i> Add Customer Payment </a>
@@ -21,7 +21,8 @@
 	            <tr>
 	              <th>ID</th>
 	              <th>Patient Name</th>
-                  <th>Total</th>
+                  {{-- <th>Invoice_no</th>
+				  <th>Total</th> --}}
                   <th>Payment</th>
                   <!-- <th>Due</th> -->
 				  <th>Date</th>
@@ -40,10 +41,11 @@
 		            <tr>
 					<td> {{ $addcustomerbalance->id }} </td>
 		              <td> {{ $addcustomerbalance->appointment->appoint_name }} </td>
-                      <td> {{ number_format($addcustomerbalance->total) }} </td>
+					  <td> {{ $addcustomerbalance->sale->invoice_no }} </td>
+                      {{ number_format($addcustomerbalance->sale->total) }} </td>
                       <td> {{ number_format($addcustomerbalance->pay_amount) }} </td>
-                      <!-- <td> {{ number_format(($addcustomerbalance->total - $addcustomerbalance->pay_amount) ) }} </td> -->
-					  <td>{{$addcustomerbalance->date}}</td> 
+                      {{-- <td> {{ number_format(($addcustomerbalance->total - $addcustomerbalance->pay_amount) ) }} </td> --}}
+					  <td>{{ \Carbon\Carbon::parse($addcustomerbalance->created_at)->format('d-m-Y') }}</td> 
 		              <td class="text-right">
 		             <!-- <a class="btn btn-danger" href="{{route('addcustomerbalance.delete', $addcustomerbalance->id)}}">Delete</a> -->
 		              </td> 

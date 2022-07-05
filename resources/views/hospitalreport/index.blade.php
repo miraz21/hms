@@ -14,12 +14,12 @@
     <div class="container">
 	<div class="row">
 	<div class="col-12 col-md-12">
-	<h1 style="text-align:center; margin-bottom:50px;">Hospital Daily Report</h1>
+	<h1 style="text-align:center; margin-bottom:0px;">Hospital Daily Report</h1>
 	</div>
 	</div>
 	<div class="row">
 	<div class="col-12 col-md-12">
-	<p style="margin-left:900px;">Date: {{ \Carbon\Carbon::now()->format('d-m-Y H:i:s') }}</p>
+	<p style="margin-left:800px;">Date: {{ \Carbon\Carbon::now()->format('d-m-Y H:i:s') }}</p>
 	</div>
 	</div>
 	<div class="row mt-5">
@@ -35,7 +35,8 @@
 	</thead>
 	<tbody>
 	<tr>
-	<td>{{ $farmecy->sum('total') ?? '' }}</td>
+	<td>{{ ($farmecy->sum('pay_amount') ?? '') + ($farmecy->sum('due_amount') ?? '') }}</td>
+	{{-- <td>{{ $farmecy->sum('total') ?? '' }}</td> --}}
 	<td>{{ $farmecy->sum('pay_amount') ?? '' }}</td>
 	<td>{{ $farmecy->sum('due_amount') ?? '' }}</td>
 	</tr>

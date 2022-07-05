@@ -46,7 +46,7 @@
 		      <td>{{number_format($patientpayment->total)}}</td>
 			  <td>{{number_format($patientpayment->pay_amount)}}</td>
 			  <!-- <td>{{ number_format(($patientpayment->total - $patientpayment->pay_amount)) }}</td> -->
-		      <td>{{$patientpayment->date}}</td> 
+		      <td>{{ \Carbon\Carbon::parse($patientpayment->created_at)->format('d-m-Y') }}</td> 
 		      <td>
 		      	<!-- <a href="" class="btn btn-primary">Edit</a>
 		      	<a href="" class="btn btn-warning">Delete</a> -->

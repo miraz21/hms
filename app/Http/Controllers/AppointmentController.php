@@ -54,8 +54,8 @@ class AppointmentController extends Controller
             'doctor'=>'required',
             'room'=>'required',
             'appointment_fee'=>'required',
-            'discount'=>'required',
-            'date'=>'required',
+            // 'discount'=>'required',
+            // 'date'=>'required',
              ]);
         try{
   
@@ -68,8 +68,8 @@ class AppointmentController extends Controller
         'doctor'=>$request->input('doctor'),
         'room'=>$request->input('room'),
         'appointment_fee'=>$request->input('appointment_fee'),
-        'discount'=>$request->input('discount'),
-        'date'=>$request->input('date'),
+        // 'discount'=>$request->input('discount'),
+        // 'date'=>$request->input('date'),
         ];
 
         Appointment::create($data);

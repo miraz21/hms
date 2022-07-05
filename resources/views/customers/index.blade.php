@@ -2,10 +2,10 @@
 @section('content')
 	<div class="row clearfix page_header">
 		<div class="col-md-6">
-			<h2> Customer Document </h2>		
+			<h2> Payment Document </h2>		
 		</div>
 		<div class="col-md-6 text-right">
-			<a class="btn btn-info" href="{{ route('customer.create') }}"> <i class="fa fa-plus"></i> Add Customer Document </a>
+			<a class="btn btn-info" href="{{ route('customer.create') }}"> <i class="fa fa-plus"></i> Add Customer Payment </a>
 		</div>
 	</div>
 
@@ -23,8 +23,9 @@
 	              <th>Customer Name</th>
 				  <th>Phone</th>
 				  <th>Sale Document</th>
-				  <th>Total</th>
+				  <th>SubTotal</th>
 				  <th>Discount</th>
+				  <th>Total</th>
                   <th>Payment</th>
                   <th>Due</th>
 	              <!-- <th class="text-right">Actions</th> -->
@@ -46,6 +47,7 @@
 					  <td> {{ $customer->sale->invoice_no }} </td>
 					  <td> {{ $customer->sale->total }} </td>
 					  <td> {{ $customer->discount }} </td>
+					  <td> {{ ($customer->sale->total) - ($customer->discount) }} </td>
                       <td> {{ $customer->pay_amount }} </td>
                       <td> {{ $customer->due_amount }} </td>
 		              <td class="text-right">

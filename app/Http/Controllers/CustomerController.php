@@ -48,40 +48,43 @@ class CustomerController extends Controller
           $customer=Customer::all();
           return view('customers.create', compact('saleitems','appointment','sales'));
       }
-  
+
       public function store(Request $request)
-      {   
+      {
+        // return $request;
           try{
           $request->validate([
           'appointment_id'=>'required',
           'sale_id'=>'required',
           'discount'=>'required',
+          // 'total'=>'required',
           'pay_amount'=>'required',
           'due_amount'=>'required',
            ]);
-  
+
            $data=[
           'appointment_id'=>$request->input('appointment_id'),
           'sale_id'=>$request->input('sale_id'),
           'discount'=>$request->input('discount'),
+          // 'total'=>$request->input('total'),
           'pay_amount'=>$request->input('pay_amount'),
           'due_amount'=>$request->input('due_amount'),
           ];
-  
+
           Customer::create($data);
-          
+
           return redirect()->route('customer.index');
-  
+
           }catch(\Exception $exception){
            return redirect()->back()->withErrors($exception->getMessage());
-  
+
           }
-        
+
       }
           public function delete($id)
       {
           $customer=Customer::find($id);
-  
+
           $customer->delete();
           return redirect()->back();
       }

@@ -28,6 +28,9 @@ class SaleItem extends Model
     {
      return $this->hasMany(Customer::class);
     }
-
+    public function addcustomerbalances()
+    {
+     return $this->hasMany(AddCustomerBalance::class);
+    }
 
 }

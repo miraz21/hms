@@ -47,14 +47,14 @@
     <label for="appointment_fee" class="form-label">Appointment Fee</label>
     <input type="number" name="appointment_fee" class="form-control" id="appointment_fee" >
   </div>
-  <div class="mb-3">
+  {{-- <div class="mb-3">
     <label for="discount" class="form-label">Discount</label>
     <input type="number" name="discount" class="form-control" id="discount" >
-  </div>
-  <div class="mb-3">
+  </div> --}}
+  {{-- <div class="mb-3">
     <label for="date" class="form-label">Date</label>
     <input type="date" name="date" class="form-control" id="date" >
-  </div>
+  </div> --}}
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>

@@ -73,7 +73,7 @@ class ReturnMedicineController extends Controller
         'appointment_id'=>'required',
         // 'medicinedetail_id'=>'required',
         // 'quantity'=>'required',
-        'date'=>'required',
+        // 'date'=>'required',
          ]);
 
         //  $data=[
@@ -100,7 +100,7 @@ class ReturnMedicineController extends Controller
                 'medicinedetail_id' => $request->medicinedetail_id[$i],
                 // 'price' => $request->price[$i],
                 'quantity' => $request->quantity[$i],
-                'date' => $request->date,
+                // 'date' => $request->date,
             ];
 
            ReturnMedicine::create($data);

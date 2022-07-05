@@ -16,7 +16,7 @@ class Patient extends Model
         'total',
         'pay_amount',
         'due_amount',
-        'date',
+        // 'date',
     ];
 
 

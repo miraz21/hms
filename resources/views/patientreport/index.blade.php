@@ -23,7 +23,7 @@
 	<p style="text-align:center;">Phone: {{ $ap->phone }}</p>
 	</div>
 	<div class="col-6 col-md-6">
-	<p>Appointment Date: {{ $ap->date }}</p>
+	<p>Appointment Date: {{ $ap->created_at }}</p>
 	</div>
 	</div>
 	<div class="row mt-5">
@@ -77,6 +77,7 @@
 		<th></th>
 		<th></th>
 		<th>Total:{{ number_format($sales->sum('total') ) }}</th>
+		<th>Discount:{{ $discount ??'' }}</th>
     </tr>
 	</tfoot>
 	<tbody>

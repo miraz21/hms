@@ -26,7 +26,8 @@
 <h6 style="margin-top: 50px; text-align:center; line-height:.5opx;">Razon Mollah Specialized Heart Center</h6>
 <p style="text-align:center; line-height:.5opx;">Faridpur Sadar, Faridpur</p>
 <p style="text-align:center; line-height:.5opx;">Help Line +8801700778300</p>
-   <a href="{{route('appointment.index')}}"><i class="fa fa-arrow-left"></i>Appointment Document</a>
+{{-- <a href="{{route('appointment.index')}}"><i class="fa fa-arrow-left"></i>Appointment Document</a> --}}
+<p style="text-align:center;">Appointment Document</p>
    <div class="row">
     {{-- <div class="col-3 col-md-3"></div> --}}
     <div class="col-12 col-md-12">
@@ -40,7 +41,7 @@
       <th scope="col">Doctor</th>
       <th scope="col">Room</th>
       <th scope="col">Amount</th>
-      <th scope="col">Discount</th>
+      {{-- <th scope="col">Discount</th> --}}
       <th scope="col">Date</th>
     </tr>
   </thead>
@@ -56,7 +57,6 @@
   <tbody>
 
     <tr>
-     
       <td >{{$appointment->appoint_name}}</td>
       <td>{{$appointment ->phone}}</td>
       <td>{{$appointment->age}}</td>
@@ -64,15 +64,15 @@
       <td>{{$appointment ->doctor}}</td>
       <td>{{$appointment->room}}</td>
 
-      @if ($appointment->discount==null)
+      {{-- @if ($appointment->discount==null)
       $appointment->appointment_fee  
       @else
       <td>{{$appointment->appointment_fee - $appointment->discount}}</td>
       @endif
-      
-      
-      <td>{{$appointment->discount}}</td>
-      <td>{{$appointment->date}}</td>
+      <td>{{$appointment->discount}}</td> --}}
+
+      <td>{{$appointment->appointment_fee}}</td>
+      <td>{{ \Carbon\Carbon::parse($appointment->created_at)->format('d-m-Y') }}</td>
     </tr>
 
   </tbody>

@@ -33,10 +33,10 @@
                   <div class="col-md-12"><button type="button" id="btnAddNew" class="btn btn-primary">Add New</button></div>
                 </div> --}}
                 <div  id="multipleRow">
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="date" class="form-label">Date</label>
                         <input type="date" name="date" class="form-control" id="date" >
-                    </div>
+                    </div> --}}
                     <div class="mb-3">
                         <select class="form-select" name="appointment_id" id="appointment_id">
                             <option value=" ">Select Patient</option>
@@ -45,8 +45,6 @@
                             @endforeach
                         </select>
                     </div>
-
-
                     <div class="mb-3">
                         <select class="form-select medicine select2" name="medicinedetail_id[]"  id="medicine">
                             <option value="" selected disabled>Select Medicine</option>

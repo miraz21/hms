@@ -18,7 +18,7 @@ class CreateHsCostsTable extends Migration
             $table->string('name')->nullable();
             $table->text('reason')->nullable();
             $table->decimal('amount')->nullable();
-            $table->text('date')->nullable();
+            // $table->text('date')->nullable();
             $table->timestamps();
         });
     }

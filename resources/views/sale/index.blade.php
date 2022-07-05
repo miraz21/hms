@@ -31,7 +31,7 @@
                     @foreach($sales as $key=> $sale)
                         <tr>
                             <th scope="row">{{$key+1}}</th>
-                            <td>{{"RMGH".str_pad("",6,"0",STR_PAD_LEFT).$sale->id}}</td>
+                            <td>{{$sale->invoice_no}}</td>
                             <td>{{$sale->appointment->appoint_name}}</td>
                             <td>{{number_format($sale->total, 2)}}</td>
                             <td>
@@ -56,3 +56,4 @@
         </div>
     </div>
 @endsection
+

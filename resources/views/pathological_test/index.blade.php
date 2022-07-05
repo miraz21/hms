@@ -46,7 +46,7 @@
 		      <td>{{$pathologicaltest->appointment->age}}</td>
 		      <td>{{$pathologicaltest->testinfo->test}} --- {{$pathologicaltest->testinfo->price}}</td>
 		      <td>{{$pathologicaltest->discount}}</td> 
-              <td>{{$pathologicaltest->date}}</td>
+              <td>{{ \Carbon\Carbon::parse($pathologicaltest->created_at)->format('d-m-Y') }}</td>
 		      <td>
 		      <a class="btn btn-sm btn-info" href="{{url('pathologicals/more',['id'=>$pathologicaltest->id,'appoint_id'=>$pathologicaltest->appointment->id])}}">More info</a> 
 			  <a class="btn btn-sm btn-primary" href="{{url('test_prnpriview',['id'=>$pathologicaltest->id,'appoint_id'=>$pathologicaltest->appointment->id])}}">Print</a>   

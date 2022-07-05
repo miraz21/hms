@@ -74,15 +74,13 @@ class PathologicalTestController extends Controller
 
     public function store(Request $request)
     {
-
-
         $c = count($request->test_info_id);
         for ($i = 0; $i < $c; $i++) {
             $old = new PatientMoreInFo();
             $old->appointment_id =  $request->appointment_id;
             $old->test_info_id =  $request->test_info_id[$i];
             $old->discount = $request->discount[$i];
-            $old->date = $request->date;
+            // $old->date = $request->date;
             $old->save();
         }
 

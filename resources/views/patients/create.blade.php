@@ -47,10 +47,10 @@
     <label for="due_amount" class="form-label">Due</label>
     <input type="number" name="due_amount" class="form-control" id="due_amount" >
   </div>
-     <div class="mb-3">
+     {{-- <div class="mb-3">
     <label for="date" class="form-label">Date</label>
     <input type="date" name="date" class="form-control" id="date" >
-  </div>
+  </div> --}}
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>

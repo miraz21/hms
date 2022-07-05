@@ -41,7 +41,7 @@
               <td>{{$returnmedicine->appointment->appoint_name}}</td>
 		      <td>{{$returnmedicine->medicinedetail->medicinename->name}}</td>
 		      <td>{{number_format($returnmedicine->quantity)}}</td>
-		      <td>{{$returnmedicine->date}}</td> 
+		      <td>{{ \Carbon\Carbon::parse($returnmedicine->created_at)->format('d-m-Y') }}</td> 
 		      <td>
 		      	{{-- <a href="" class="btn btn-primary">Edit</a> --}}
 		      	<!-- <a href="{{route('returnmedicine.delete', $returnmedicine->id)}}" class="btn btn-warning">Delete</a> -->
