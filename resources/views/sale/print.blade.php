@@ -12,7 +12,7 @@
     <div class="container" align="center" style="padding-top:100px;">
         <h6 style="margin-top: 50px; text-align:center;">Razwan Mollah Specialized Heart Center</h6>
         <p style="text-align:center; ">Faridpur Sadar, Faridpur</p>
-        <p style="text-align:center; mt-0">Help Line +8801700778300</p>
+        <p style="text-align:center;">Help Line +8801700778300</p>
         <a href="{{route('sale.index')}}"><i class="fa fa-arrow-left"></i>Sale List</a>
         <p>{{$sale->appointment->appoint_name}}</p>
         <div class="row">
@@ -20,15 +20,15 @@
             <div class="col-4 col-md-4">
                 <table class="table">
                     <thead>
-                    <tr>
-                        <th scope="col">S/L</th>
-                        <th scope="col">Medicine</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Qty</th>
-                        <th scope="col">Amount</th>
-                    </tr>
+                        <tr>
+                            <th scope="col">S/L</th>
+                            <th scope="col">Medicine</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Amount</th>
+                        </tr>
                     </thead>
-
+                    <tbody>
                     @foreach($sale->item as $key=>$item)
                         <tr>
                             <th scope="row">{{$key+1}}</th>
@@ -37,9 +37,9 @@
                             <td>{{number_format($item->quantity)}}</td>
                             <td style="text-align: end">{{number_format($item->amount, 2)}} BDT</td>
                         </tr>
-                        @endforeach
-                        </tbody>
-                        <tfoot>
+                    @endforeach
+                    </tbody>
+                    <tfoot>
                         <tr>
                             <th></th>
                             <th></th>
@@ -48,8 +48,7 @@
                             <th>Total:{{number_format($sale->total)}}</th>
                             <th class="text-right"></th>
                         </tr>
-                        </tfoot>
-                        <tbody>
+                    </tfoot>
                 </table>
             </div>
             <div class="col-4 col-md-4"></div>

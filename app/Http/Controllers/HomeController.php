@@ -47,6 +47,5 @@ class HomeController extends Controller
             $doctor= doctor::all();
             return view('user.home', compact('doctor'));
         }
-       
     }
 }
