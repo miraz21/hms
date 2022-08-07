@@ -2,7 +2,7 @@
 @section('content')
     <div class="row clearfix page_header">
         <div class="col-md-6">
-            <h2> Sales </h2>
+            <h2> Sales Info </h2>
         </div>
         <div class="col-md-6 text-right">
             <a class="btn btn-info" href="{{ route('sale.create') }}"> <i class="fa fa-plus"></i> Add Sale </a>
@@ -35,15 +35,16 @@
                             <td>{{$sale->appointment->appoint_name}}</td>
                             <td>{{number_format($sale->total, 2)}}</td>
                             <td>
-                                <a href="{{route('sale.print',$sale->id)}}" target="_blank" class="btn btn-sm btn-info">Print</a>
                                 <a href="{{route('sale.show',$sale->id)}}" class="btn btn-sm btn-info">More Info</a>
+                                <a href="{{route('customer.index')}}" class="btn btn-sm btn-info">Payment</a>
+                                <a href="{{route('sale.print',$sale->id)}}" target="_blank" class="btn btn-sm btn-info">Print</a>
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                     <tfoot>
                     <tr>
-
+                        <th></th>
                         <th></th>
                         <th class="text-right">Total</th>
                         <th >{{ $sales->sum('total') }}</th>

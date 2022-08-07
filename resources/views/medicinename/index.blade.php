@@ -37,6 +37,7 @@
 		              <td> {{ $medicinename->id }} </td>
 		              <td> {{ $medicinename->name }} </td>
 		              <td class="text-right">
+						<a class="btn btn-info" href="{{route('medicinename.edit', $medicinename->id)}}">Edit</a>
 		             <!-- <a class="btn btn-danger" href="{{route('medicinename.delete', $medicinename->id)}}">Delete</a> -->
 		              </td>
 		            </tr>

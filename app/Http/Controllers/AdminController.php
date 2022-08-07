@@ -6,6 +6,14 @@ use Illuminate\Http\Request;
 
 use App\Models\Doctor;
 
+use Illuminate\Support\Facades\Auth;
+
+use App\Models\OnlineAppointment;
+
+use Notification;
+
+use App\Notifications\SendEmailNotification;
+
 class AdminController extends Controller
 {
   public function addview()
@@ -28,4 +36,61 @@ class AdminController extends Controller
 
     return redirect()->back()->with('message','Doctor Added Successfully');
   }
+  public function showappointment()
+  {
+    if(Auth::id())
+    {
+      if(Auth::user()->usertype==1)
+      {
+        $data= OnlineAppointment::all();
+        return view('admin.showappointment', compact('data'));
+      }
+      if(Auth::user()->usertype==5)
+      {
+        $data= OnlineAppointment::all();
+        return view('admin.showappointment', compact('data'));
+      }
+      else{
+        return redirect()->back();
+      }
+    }
+    else{
+      return redirect('login');
+    }
+  }
+  public function approved($id)
+{
+  $data=OnlineAppointment::find($id);
+  $data->status='approved';
+  $data->save();
+  return redirect()->back();
 }
+
+public function canceled($id)
+{
+  $data=OnlineAppointment::find($id);
+  $data->status='canceled';
+  $data->save();
+  return redirect()->back();
+}
+// public function emailview($id)
+// {
+//   $data=OnlineAppointment::find($id);
+//   return view('admin.email_view', compact('data'));
+// }
+// public function sendemail(Request $request, $id)
+// {
+//   $data=OnlineAppointment::find($id);
+//   $details=[
+//     'greeting'=>$request->greeting,
+//     'body'=>$request->body,
+//     'actiontext'=>$request->actiontext,
+//     'actionurl'=>$request->actionurl,
+//     'endpart'=>$request->endpart
+//   ];
+//   Notification::send($data, new SendEmailNotification($details));
+
+//   return redirect()->back()->with('message', 'Email send is successful');
+// }
+}
+

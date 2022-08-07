@@ -44,7 +44,7 @@ class PathologicalTestController extends Controller
     }
     }
 
-    public function showMOre($id, $appointemnt_id)
+    public function showMore($id, $appointemnt_id)
     {
 
         $pathologicaltests = PatientMoreInFo::where('appointment_id', $appointemnt_id)->get();

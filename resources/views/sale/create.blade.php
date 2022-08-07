@@ -33,10 +33,6 @@
                   <div class="col-md-12"><button type="button" id="btnAddNew" class="btn btn-primary">Add New</button></div>
                 </div> --}}
                 <div  id="multipleRow">
-                    {{-- <div class="mb-3">
-                        <label for="date" class="form-label">Date</label>
-                        <input type="date" name="date" class="form-control" id="date" >
-                    </div> --}}
                     <div class="mb-3">
                         <select class="form-select" name="appointment_id" id="appointment_id">
                             <option value=" ">Select Patient</option>
@@ -93,6 +89,7 @@
         }
         function multipleRowInsert(){
             var len = $('#multipleRow').children().length;
+           
             console.log(len);
             var htmlForm = '';
             htmlForm +='<div id="inputRows">';
@@ -106,7 +103,7 @@
             htmlForm +='    </div>';
             htmlForm +='    <div class="mb-3">';
             htmlForm +='      <label for="price" class="form-label">Price</label>';
-            htmlForm +='      <input onchange="totalAmnt('+ (len+1) +')" type="number" name="price[]" class="form-control price" id="price'+ (len+1) +'" step="0.01">';
+            htmlForm +='      <input onchange="totalAmnt('+ (len+1) +')" type="number" name="price[]" class="form-control price" id="price'+(len+1) +'" step="0.01">';
             htmlForm +='    </div>';
             htmlForm +='    <div class="mb-3">';
             htmlForm +='      <label for="quantity" class="form-label">Quantity</label>';
@@ -120,7 +117,15 @@
             htmlForm += '      <button id="removeRow" type="button" class="btn btn-danger"> - </button>';
             htmlForm += '    </div>';
             htmlForm +='    </div>';
+
+         
             $('#multipleRow').append(htmlForm);
+
+            // $(".medicineId"+(len+1)).select2({
+            //     placeholder: "select Medicine",
+            //     allowClear: true
+            // });
+            
             console.log('ok');
         }
     </script>

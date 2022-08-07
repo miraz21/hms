@@ -6,6 +6,8 @@ use App\Models\Appointment;
 
 use App\Models\Sale;
 
+use App\Models\Patient;
+
 use App\Models\TestInfo;
 
 use Illuminate\Http\Request;
@@ -49,6 +51,7 @@ class PatientReportController extends Controller
         // return $medicines->sum('amount');
 
         $pathologcal_pay = $appointment->pathologicaltestpayments()->get();
+
         $pathological_t_total = $pathologcal_pay->sum('total');
 
         $patient = $appointment->patients()->select('total','pay_amount','due_amount')->get();
@@ -74,6 +77,8 @@ class PatientReportController extends Controller
 
         $sales = Sale::query()->where('appointment_id', $request->id)->get();
 
-        return view('patientreport.index',compact('discount', 'ap','tests','test_total','medicines','grand_total','total_pay','due_amount', 'sales'));
+        $patient = Patient::query()->where('appointment_id' ,$request->id)->get();
+
+        return view('patientreport.index',compact('discount', 'ap','tests','test_total','medicines','grand_total','total_pay','due_amount', 'sales', 'patient'));
     }
 }

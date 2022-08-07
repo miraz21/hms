@@ -29,28 +29,30 @@
       <div class="row">
         {{-- <div class="col-4 col-md-4"></div> --}}
         <div class="col-12 col-md-12">
-          <h6>Patient Name: <span style="color: green;">{{$pathologicalpatient->moreinfo->appoint_name}}</span> </h6>
-          <h6>Patient Phone: <span style="color: green;">{{$pathologicalpatient->moreinfo->phone}}</span> </h6>
+          <h6>Patient Name: <span style="color: green;">{{$patient->appointment->appoint_name}}</span> </h6>
+          <h6>Patient Phone: <span style="color: green;">{{$patient->appointment->phone}}</span> </h6>
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">SL</th>
-                <th scope="col">Test</th>
-                <th scope="col">Discount</th>
-                <th scope="col">Price</th>
+                <th scope="col">Room</th>
+                <th scope="col">Reason</th>
+                <th scope="col">Total</th>
+                <th scope="col">Payment</th>
+                <th scope="col">Due</th>
               </tr>
             </thead>
             <tbody>
-              @foreach($pathologicaltests as $key=>$pathologicaltest)
+              {{-- @foreach($patients as $key=>$patient) --}}
                 <tr>
-                  <th scope="row">{{$key+1}}</th>
-                  <td>{{$pathologicaltest->testinfo->test}}</td>
-                  <td>{{$pathologicaltest->discount}}</td>
-                  <td>{{$pathologicaltest->testinfo->price}}</td>
+                  <td>{{$patient->room}}</td>
+                  <td>{{$patient->reason}}</td>
+                  <td>{{$patient->total}}</td>
+                  <td>{{$patient->pay_amount}}</td>
+                  <td>{{$patient->due_amount}}</td>
                 </tr>
-              @endforeach
+              {{-- @endforeach --}}
             </tbody>
-            <tfoot>
+            {{-- <tfoot>
               <tr>
                 <th></th>
                 <th></th>
@@ -63,19 +65,7 @@
                 <th></th>
                 <th class="text-right">Total: {{ $test_amount - $pathologicaltests->sum('discount') ?? ''}}</th>
               </tr>
-              <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th class="text-right">Payment: {{ $pathologicaltestpayment->pay_amount ?? '00' }}</th>
-              </tr>
-              <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th class="text-right">Due Payment:  {{ $pathologicaltestpayment->due_amount ?? '00' }}</th>
-              </tr>
-            </tfoot>
+            </tfoot> --}}
           </table>
           <button id="btnPrint" class="hidden-print " style="margin-top: 20px;">Print</button>
         </div>

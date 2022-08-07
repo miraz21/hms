@@ -42,9 +42,11 @@ class AddCustomerBalanceController extends Controller
 }
       public function create()
       {
-          $appointment=Appointment::all();
-          $addcustomerbalances=AddCustomerBalance::all();
-          return view('addcustomerbalance.create', compact('appointment'));
+        $appointment=Appointment::all();
+        $saleitems=SaleItem::all();
+        $sales=Sale::all();
+        $addcustomerbalance=AddCustomerBalance::all();
+        return view('addcustomerbalance.create', compact('saleitems','appointment','sales'));
       }
   
       public function store(Request $request)

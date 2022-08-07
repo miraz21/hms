@@ -21,7 +21,7 @@
 	          <thead>
 	            <tr>
 	              <th scope="col">ID</th>
-	              <th scope="col">Appoint Name</th>
+	              <th scope="col">Patient</th>
 			      <th scope="col">Phone</th>
 			      <th scope="col">AGE</th>
 			      <th scope="col">Problem</th>

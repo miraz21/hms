@@ -47,7 +47,7 @@
 
         table {
             font-family: arial, sans-serif;
-            width: 100%;
+            width: 80%;
             border-collapse: collapse;
             padding: 1px;
         }
@@ -87,7 +87,7 @@
         }
 
         .cropped img {
-            width: 400px;
+            width: 300px;
             margin: 8px 0px 0px 80px;
         }
 
@@ -101,7 +101,7 @@
         .table-bordered td,
         .table-bordered th {
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 15px;
             font-size: 14px;
         }
 
@@ -111,7 +111,7 @@
         }
 
         .invoice-items td {
-            padding: 14px 0;
+            padding: 10px 0;
 
         }
 
@@ -140,7 +140,7 @@
             $payment += $value->pay_amount;
         }
     @endphp
-    <section class="main-pd-wrapper" style="width: 450px; margin: auto">
+    <section class="main-pd-wrapper" style="width: 350px; margin: auto">
         <div
             style="
                   text-align: center;
@@ -148,19 +148,20 @@
                   line-height: 1.5;
                   font-size: 14px;
                   color: #4a4a4a;
+                  <!--margin: 12px auto;-->
                 ">
-            <p style="font-weight: bold; color: #000; margin-top: 15px; font-size: 18px;">
+            <p style="font-weight: bold; color: #000; margin-top: 15px; font-size: 15px;">
                 Razwan Mollah Specialized Heart Center
             </p>
-            <h6 style="font-weight: bold; margin: 15px auto; font-size: 18px;">
+            <p style="font-weight: bold; color: #000;  font-size: 15px;">
                 C&B Ghat Road <br>
                 Faridpur Sadar, Faridpur
-            </h6>
+            </p>
             <p>
-            <h6 style="font-weight: bold; margin: 15px auto; font-size: 15px;">Help Line:</b> +8801700778300 </h6>
-            <p style="font-weight: bold; margin: 15px auto; font-size: 15px;">Patient Name:
+            <p style="font-weight: bold; color: #000;  font-size: 15px;">Help Line:</b> +8801700778300 </p>
+            <p style="font-weight: bold; color: #000; font-size: 15px;">Patient Name:
                 {{ $sale->appointment->appoint_name }}</p>
-            <p style="font-weight: bold; margin: 15px auto; font-size: 15px;">Invoice No:
+            <p style="font-weight: bold; color: #000;  font-size: 15px;">Invoice No:
                 {{ $sale->invoice_no }}</p>
 
             <hr style="border: 1px dashed rgb(131, 131, 131); margin: 25px auto">
@@ -168,11 +169,11 @@
         <table style="width: 100%; table-layout: fixed">
             <thead>
                 <tr>
-                    <th style="width: 50px; padding-left: 0;">Sn.</th>
-                    <th style="width: 150px;">Medicine</th>
-                    <th>QTY</th>
-                    <th>Price</th>
-                    <th>Amount</th>
+                    <th style="width: 30px; padding-left: 0;">Sn.</th>
+                    <th style="width: 100px; padding-left: 0;">Medicine</th>
+                    <th style="padding-left: 0;">QTY</th>
+                    <th style="padding-left: 0;">Price</th>
+                    <th style="padding-left: 0;">Amount</th>
                 </tr>
             </thead>
             <tbody>
@@ -223,3 +224,4 @@
 </body>
 
 </html>
+

@@ -15,10 +15,8 @@ class CreateMedicineDetailsTable extends Migration
     {
         Schema::create('medicine_details', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedBigInteger('medicinecompany_id');
             $table->unsignedBigInteger('medicinename_id')->unique();
             $table->float('price')->nullable();
-            // $table->float('discount')->nullable();
             $table->decimal('quantity')->nullable();
             $table->timestamps();
         });

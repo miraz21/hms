@@ -2,7 +2,7 @@
  
 </x-app-layout>
 
-	   	<!--<form action="" class="col-4">
+	   	{{-- <form action="" class="col-4">
 		<div class="form-group">
 		<input type="search" name="search" id="search" class="form-control" placeholder="Search by name" value="{{$search}}">
         </div>
@@ -10,9 +10,9 @@
 		<a href="{{route('medicinedetail.index')}}">
 		<button class="btn btn-primary" type="button">Reset</button>
        </a>
-       </form>-->
+       </form>
 
-	   <!-- <form action="{{ route('web.find') }}" method="GET">
+	   <form action="{{ route('web.find') }}" method="GET">
         
 		<div class="form-group">
 		   <label for="">Enter keyword</label>
@@ -56,4 +56,4 @@
 		   {{  $medicinedetails->appends(request()->input())->links('layouts.paginationlinks') }}
 	   </div>
 
-	 @endif -->
+	 @endif  --}}

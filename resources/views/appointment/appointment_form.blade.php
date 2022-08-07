@@ -23,9 +23,9 @@
 <body>
 <div class="container-fluid page-body-wrapper">
 <div class="container" align="center" style="padding-top:100px;">
-<h6 style="margin-top: 50px; text-align:center; line-height:.5opx;">Razon Mollah Specialized Heart Center</h6>
-<p style="text-align:center; line-height:.5opx;">Faridpur Sadar, Faridpur</p>
-<p style="text-align:center; line-height:.5opx;">Help Line +8801700778300</p>
+<h6 style="margin-top: 50px; text-align:center;">Razon Mollah Specialized Heart Center</h6>
+<p style="text-align:center;">Faridpur Sadar, Faridpur</p>
+<p style="text-align:center;">Help Line +8801700778300</p>
 {{-- <a href="{{route('appointment.index')}}"><i class="fa fa-arrow-left"></i>Appointment Document</a> --}}
 <p style="text-align:center;">Appointment Document</p>
    <div class="row">

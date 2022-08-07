@@ -97,9 +97,35 @@
 	</table>
 	</div>
 	</div>
-	<div class="row mt-5">
-	<div class="col-2 col-md-2"></div>
-	<div class="col-8 col-md-8">
+
+	
+	    <div class="row mt-5">
+		<div class="col-6 col-md-6">
+		<p style="text-align:center;">Parment Treadment</p>
+		<table class="table table-border">
+		<thead>
+		<tr>
+		{{-- <th>S/L No</th> --}}
+		<th>Patient</th>
+		<th>Total</th>
+		<th>Payment</th>
+		<th>Due</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+		{{-- <td>{{ $loop->iteration }}</td>  --}}
+		<td>{{ count($patient) }}</td>
+		<td>{{ $patient->sum('total') }}</td>
+		<td>{{ $patient->sum('pay_amount') }}</td>
+		<td>{{ $patient->sum('due_amount') }}</td>
+		</tr>
+		</tbody>
+		</table>
+		</div>
+
+
+	<div class="col-6 col-md-6">
 	<p style="text-align:center;">Patient Payment Report</p>
 	<table class="table table-border">
 	<thead>
@@ -118,8 +144,8 @@
 	</tbody>
 	</table>
 	</div>
-	<div class="col-2 col-md-2"></div>
 	</div>
+
 	<div class="row">
 	<div class="col-12 col-md-12">
 

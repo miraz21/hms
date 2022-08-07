@@ -60,6 +60,35 @@ class MedicineNameController extends Controller
           }
         
       }
+
+      public function edit($id)
+      {
+       $medicinename=MedicineName::find($id);
+       return view('medicinename.edit', compact('medicinename'));
+      }
+      
+     public function update(Request $request, $id)
+      {
+      try{
+       $request->validate([
+      'name'=>'required',
+       ]);
+
+       $medicinename=MedicineName::find($id);
+       
+       $data=[
+      'name'=>$request->input('name'),
+      ];
+
+       $medicinename->update($data);
+       return redirect()->route('medicinename.index');
+
+      }catch(\Exception $exception){
+      
+       return redirect()->back()->withErrors($exception->getMessage());
+      
+      }
+    }
           public function delete($id)
       {
           $medicinename=medicinename::find($id);

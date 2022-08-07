@@ -13,7 +13,7 @@
         </ul>
     </div>
 @endif
-<form action="{{route('medicinedetail.edit',$medicinedetail->id)}}" method="post" enctype="multipart/form-data">
+<form action="{{route('medicinedetail.edit', $medicinedetail->id)}}" method="post" enctype="multipart/form-data">
 @csrf 
   <div class="mb-3">
     <label for="name" class="form-label">Medicine Name</label>

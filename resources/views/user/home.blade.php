@@ -8,7 +8,7 @@
 
   <meta name="copyright" content="MACode ID, https://macodeid.com/">
 
-  <title>Rezwan Molla General Hospital</title>
+  <title>Razon Mollah Specialized Heart Center</title>
 
   <link rel="stylesheet" href="../assets/css/maicons.css">
 
@@ -85,6 +85,9 @@
             @if(Route::has('login'))
 
             @auth
+            <li class="nav-item">
+              <a class="nav-link" style="background-color:greenyellow; color: white;" href="{{url('myappointment')}}">MyAppointment</a>
+            </li>
             <x-app-layout>
  
             </x-app-layout>
@@ -102,7 +105,12 @@
       </div> <!-- .container -->
     </nav>
   </header>
-
+  @if(session()->has('message'))
+  <div class="alert alert-success">
+  <button type="button" class="close" data-dismiss="alert">+</button>
+  {{session()->get('message')}}
+  </div>
+  @endif
   <div class="page-hero bg-image overlay-dark" style="background-image: url(image/hospital.jpg);">
     <div class="hero-section">
       <div class="container text-center wow zoomIn">
@@ -221,9 +229,9 @@
         </div>
         <div class="col-sm-6 col-lg-3 py-3">
           <h5>Contact</h5>
-          <p class="footer-link mt-2">351 Willow Street Franklin, MA 02038</p>
-          <a href="#" class="footer-link">701-573-7582</a>
-          <a href="#" class="footer-link">healthcare@temporary.net</a>
+          <p class="footer-link mt-2">Faridpur Sadar, Faridpur</p>
+          <a href="#" class="footer-link">+8801700778300</a>
+          <a href="#" class="footer-link">rmninursinginstitute@gmail.com</a>
 
           <h5 class="mt-3">Social Media</h5>
           <div class="footer-sosmed mt-3">

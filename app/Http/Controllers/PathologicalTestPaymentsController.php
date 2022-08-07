@@ -38,7 +38,7 @@ class PathologicalTestPaymentsController extends Controller
       {
           $appointment=Appointment::all();
           $pathologicaltestpayment=PathologicalTestPayment::all();
-          return view('pathologicaltestpayment.create', compact('appointment'));
+          return view('pathologicaltestpayment.create', compact('appointment','pathologicaltestpayment'));
       }
   
       public function store(Request $request)
