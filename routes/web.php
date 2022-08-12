@@ -18,10 +18,42 @@ Route::get('/',[App\Http\Controllers\HomeController::class, 'index']);
 
 Route::get('/home',[App\Http\Controllers\HomeController::class, 'redirect']);
 
+Route::post('/appointment',[App\Http\Controllers\HomeController::class, 'appointment']);
+
+Route::get('/myappointment',[App\Http\Controllers\HomeController::class, 'myappointment']);
+
+Route::get('/cancel_appoint/{id}',[App\Http\Controllers\HomeController::class, 'cancel_appoint']);
+
 
 // Route::get('add_doctor',[App\Http\Controllers\AdminController::class, 'addview'])->name('add.doctor');
 
 // Route::get('upload_doctor',[App\Http\Controllers\AdminController::class, 'upload'])->name('upload.doctor');
+
+// start admin route here  \\
+
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'view']);
+
+Route::get('/add_doctor_view',[App\Http\Controllers\AdminController::class, 'addview']);
+
+Route::post('/upload_doctor',[App\Http\Controllers\AdminController::class, 'upload']);
+
+Route::get('/showappointment',[App\Http\Controllers\AdminController::class, 'showappointment']);
+
+Route::get('/approved/{id}',[App\Http\Controllers\AdminController::class, 'approved']);
+
+Route::get('/canceled/{id}',[App\Http\Controllers\AdminController::class, 'canceled']);
+
+// Route::get('/showdoctor',[AdminController::class, 'showdoctor']);
+
+// Route::post('/editdoctor/{id}',[AdminController::class, 'editdoctor']);
+
+// Route::get('/updatedoctor/{id}',[AdminController::class, 'updatedoctor']);
+
+// Route::get('/deletedoctor',[AdminController::class, 'deletedoctor']);
+
+/*Route::get('/emailview/{id}',[AdminController::class, 'emailview']);
+
+Route::post('/sendemail/{id}',[AdminController::class, 'sendemail']);*/
 
 Route::middleware([
     'auth:sanctum',
@@ -51,6 +83,10 @@ Route::get('/medicinenames',[App\Http\Controllers\MedicineNameController::class,
 Route::get('/medicinenames/create',[App\Http\Controllers\MedicineNameController::class, 'create'])->name('medicinename.create');
 
 Route::post('/medicinenames/create',[App\Http\Controllers\MedicineNameController::class, 'store']);
+
+Route::get('/medicinenames/edit/{id}',[App\Http\Controllers\MedicineNameController::class,'edit'])->name('medicinename.edit');
+
+Route::post('/medicinenames/edit/{id}',[App\Http\Controllers\MedicineNameController::class,'update']);
 
 Route::get('/medicinenames/delete/{id}',[App\Http\Controllers\MedicineNameController::class, 'delete'])->name('medicinename.delete');
 
@@ -107,7 +143,9 @@ Route::get('/sale_prnpriview/{cus_id}',[App\Http\Controllers\PrintSaleController
 
 
 Route::resource('sale', SaleController::class);
+
 Route::get('sale-print/{sale}', [SaleController::class, 'print'])->name('sale.print');
+
 Route::resource('sale-item', SaleItemController::class);
 
 Route::get('getprice', [App\Http\Controllers\SaleDetailController::class,'getprice'])->name('getprice');
@@ -144,7 +182,11 @@ Route::get('/customers/create',[App\Http\Controllers\CustomerController::class, 
 
 Route::post('/customers/create',[App\Http\Controllers\CustomerController::class, 'store'])->name('customer.store');
 
+Route::post('/add_payment',[App\Http\Controllers\CustomerController::class, 'add_payment'])->name('customer.add_payment');
+
 Route::get('/customers/delete/{id}',[App\Http\Controllers\CustomerController::class, 'delete'])->name('customer.delete');
+
+Route::get('gettotal', [App\Http\Controllers\CustomerController::class,'gettotal'])->name('gettotal');
 
 
 
@@ -215,6 +257,10 @@ Route::get('/patients/create',[App\Http\Controllers\PatientController::class, 'c
 Route::post('/patients/create',[App\Http\Controllers\PatientController::class, 'store'])->name('patient.store');
 
 Route::get('/patients/delete/{id}',[App\Http\Controllers\PatientController::class, 'delete'])->name('patient.delete');
+
+Route::get('/patientadmit',[App\Http\Controllers\PrintPatientController::class, 'index']);
+
+Route::get('/patient_prnpriview/{id}',[App\Http\Controllers\PrintPatientController::class, 'prnpriview'])->name('print.patient');
 
 
 

@@ -13,7 +13,7 @@ class ReturnMedicine extends Model
         'appointment_id',
         'medicinedetail_id',
         'quantity',
-        'date',
+        // 'date',
         ];
 
         public function scopeCustomerId($query, $value)

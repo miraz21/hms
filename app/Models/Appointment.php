@@ -17,7 +17,8 @@ class Appointment extends Model
         'doctor',
         'room',
         'appointment_fee',
-        'date',
+        // 'discount',
+        // 'date',
         ];
 
         public function pathologicaltests()

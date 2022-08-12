@@ -18,7 +18,7 @@ class CreatePathologicalTestsTable extends Migration
             $table->unsignedBigInteger('appointment_id');
             $table->unsignedBigInteger('test_info_id');
             $table->decimal('discount')->nullable();
-            $table->text('date')->nullable();
+            // $table->text('date')->nullable();
             $table->timestamps();
         });
     }

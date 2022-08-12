@@ -21,12 +21,14 @@
 	          <thead>
 	            <tr>
 	              <th scope="col">ID</th>
-	              <th scope="col">Appoint Name</th>
+	              <th scope="col">Patient</th>
 			      <th scope="col">Phone</th>
 			      <th scope="col">AGE</th>
 			      <th scope="col">Problem</th>
 			      <th scope="col">Doctor & speciality</th>
+				  <th scope="col">Room</th>
                   <th scope="col">Fee</th>
+				  {{-- <th scope="col">Discount</th> --}}
                   <th scope="col">Date</th>
 			      <th scope="col">Action</th>
 	            </tr>
@@ -48,8 +50,17 @@
 		      <td>{{$appointment->problem}}</td>
 		      <td>{{$appointment->doctor}}</td> 
               <td>{{$appointment->room}}</td> 
-              <td>{{$appointment->appointment_fee}}</td> 
-              <td>{{$appointment->date}}</td>
+			 
+			  {{-- @if ($appointment->discount==null)
+			      $appointment->appointment_fee  
+			  @else
+			  <td>{{$appointment->appointment_fee - $appointment->discount }}</td>
+			  @endif
+			  
+			  <td>{{$appointment->discount}}</td> --}}
+			  
+			  <td>{{$appointment->appointment_fee }}</td>
+              <td>{{ \Carbon\Carbon::parse($appointment->created_at)->format('d-m-Y') }}</td>
 		      <td>
 		      	<!-- <a href=""class="btn btn-primary">Edit</a> -->
 			    <a href="{{route('print.appointment', $appointment->id)}}" class="btn btn-primary">Print</a>

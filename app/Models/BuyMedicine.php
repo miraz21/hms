@@ -13,7 +13,7 @@ class BuyMedicine extends Model
         'medicinedetail_id',
         'quantity',
         'amount',
-        'date',
+        // 'date',
     ];
 
     
@@ -21,4 +21,6 @@ class BuyMedicine extends Model
     {
         return $this->hasOne(MedicineDetail::class, 'id', 'medicinedetail_id');
     }
+
+
 }

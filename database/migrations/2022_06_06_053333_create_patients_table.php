@@ -21,7 +21,7 @@ class CreatePatientsTable extends Migration
             $table->decimal('total')->nullable();
             $table->decimal('pay_amount')->nullable();
             $table->decimal('due_amount')->nullable();
-            $table->text('date')->nullable();
+            // $table->text('date')->nullable();
             $table->timestamps();
         });
     }

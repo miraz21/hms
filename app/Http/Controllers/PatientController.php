@@ -51,7 +51,7 @@ class PatientController extends Controller
           'total'=>'required',
           'pay_amount'=>'required',
           'due_amount'=>'required',
-          'date'=>'required',
+          // 'date'=>'required',
            ]);
   
            $data=[
@@ -61,7 +61,7 @@ class PatientController extends Controller
           'total'=>$request->input('total'),
           'pay_amount'=>$request->input('pay_amount'),
           'due_amount'=>$request->input('due_amount'),
-          'date'=>$request->input('date'),
+          // 'date'=>$request->input('date'),
           ];
   
           Patient::create($data);

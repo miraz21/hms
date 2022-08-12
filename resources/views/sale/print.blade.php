@@ -1,64 +1,227 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>Admin</title>
+    <meta charset="utf-8" />
+    <title>Tax Invoice</title>
+    <link rel="shortcut icon" type="image/RMGH.png" href="./RMGH.png" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .table-bordered td,
+        .table-bordered th {
+            border: 1px solid #ddd;
+            padding: 10px;
+            word-break: break-all;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+        }
+
+        .h4-14 h4 {
+            font-size: 12px;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .img {
+            margin-left: "auto";
+            margin-top: "auto";
+            height: 30px;
+        }
+
+        pre,
+        p {
+            /* width: 99%; */
+            /* overflow: auto; */
+            /* bpicklist: 1px solid #aaa; */
+            padding: 0;
+            margin: 0;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            width: 80%;
+            border-collapse: collapse;
+            padding: 1px;
+        }
+
+        .hm-p p {
+            text-align: left;
+            padding: 1px;
+            padding: 5px 4px;
+        }
+
+        td,
+        th {
+            text-align: left;
+            padding: 8px 6px;
+        }
+
+        .table-b td,
+        .table-b th {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            /* background-color: #ddd; */
+        }
+
+        .hm-p td,
+        .hm-p th {
+            padding: 3px 0px;
+        }
+
+        .cropped {
+            float: right;
+            margin-bottom: 20px;
+            height: 100px;
+            /* height of container */
+            overflow: hidden;
+        }
+
+        .cropped img {
+            width: 300px;
+            margin: 8px 0px 0px 80px;
+        }
+
+        .main-pd-wrapper {
+            box-shadow: 0 0 10px #ddd;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .table-bordered td,
+        .table-bordered th {
+            border: 1px solid #ddd;
+            padding: 15px;
+            font-size: 14px;
+        }
+
+        .invoice-items {
+            font-size: 14px;
+            border-top: 1px dashed #ddd;
+        }
+
+        .invoice-items td {
+            padding: 10px 0;
+
+        }
+
+        @media print {
+
+            .hidden-print,
+            .hidden-print * {
+                display: none !important;
+            }
+        }
+
+        @page {
+            margin: 0;
+        }
+    </style>
 </head>
+
 <body>
-<div class="container-fluid page-body-wrapper">
-    <div class="container" align="center" style="padding-top:100px;">
-        <h6 style="margin-top: 50px; text-align:center;">Razwan Mollah Specialized Heart Center</h6>
-        <p style="text-align:center; ">Faridpur Sadar, Faridpur</p>
-        <p style="text-align:center;">Help Line +8801700778300</p>
-        <a href="{{route('sale.index')}}"><i class="fa fa-arrow-left"></i>Sale List</a>
-        <p>{{$sale->appointment->appoint_name}}</p>
-        <div class="row">
-            <div class="col-4 col-md-4"></div>
-            <div class="col-4 col-md-4">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">S/L</th>
-                            <th scope="col">Medicine</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Qty</th>
-                            <th scope="col">Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($sale->item as $key=>$item)
-                        <tr>
-                            <th scope="row">{{$key+1}}</th>
-                            <td style="text-align:center">{{$item->medicinedetail->medicinename->name}}</td>
-                            <td style="text-align:center">{{number_format($item ->price, 2)}}</td>
-                            <td>{{number_format($item->quantity)}}</td>
-                            <td style="text-align: end">{{number_format($item->amount, 2)}} BDT</td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th>Total:{{number_format($sale->total)}}</th>
-                            <th class="text-right"></th>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-            <div class="col-4 col-md-4"></div>
+    @php
+        $discount = 0;
+        $payment = 0;
+        $payment_due = 0;
+        foreach ($sale->customers as $key => $value) {
+            $discount += $value->discount;
+            $payment_due += $value->due_amount;
+            $payment += $value->pay_amount;
+        }
+    @endphp
+    <section class="main-pd-wrapper" style="width: 350px; margin: auto">
+        <div
+            style="
+                  text-align: center;
+                  margin: auto;
+                  line-height: 1.5;
+                  font-size: 14px;
+                  color: #4a4a4a;
+                  <!--margin: 12px auto;-->
+                ">
+            <p style="font-weight: bold; color: #000; margin-top: 15px; font-size: 15px;">
+                Razwan Mollah Specialized Heart Center
+            </p>
+            <p style="font-weight: bold; color: #000;  font-size: 15px;">
+                C&B Ghat Road <br>
+                Faridpur Sadar, Faridpur
+            </p>
+            <p>
+            <p style="font-weight: bold; color: #000;  font-size: 15px;">Help Line:</b> +8801700778300 </p>
+            <p style="font-weight: bold; color: #000; font-size: 15px;">Patient Name:
+                {{ $sale->appointment->appoint_name }}</p>
+            <p style="font-weight: bold; color: #000;  font-size: 15px;">Invoice No:
+                {{ $sale->invoice_no }}</p>
+
+            <hr style="border: 1px dashed rgb(131, 131, 131); margin: 25px auto">
         </div>
-        <p style="text-align:center">Thank You</p>
-    </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-<script src="http://www.position-absolute.com/creation/print/jquery.printPage.js"></script>
+        <table style="width: 100%; table-layout: fixed">
+            <thead>
+                <tr>
+                    <th style="width: 30px; padding-left: 0;">Sn.</th>
+                    <th style="width: 100px; padding-left: 0;">Medicine</th>
+                    <th style="padding-left: 0;">QTY</th>
+                    <th style="padding-left: 0;">Price</th>
+                    <th style="padding-left: 0;">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($sale->item as $key => $item)
+                    <tr class="invoice-items">
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->medicinedetail->medicinename->name }}</td>
+                        <td>{{ number_format($item->quantity) }}</td>
+                        <td>{{ number_format($item->price, 2) }}</td>
+                        <td>{{ number_format($item->amount, 2) }}</td>
+                    </tr>
+                @endforeach
+
+
+            </tbody>
+        </table>
+
+        <table style="width: 100%;
+              background: #fcbd024f;
+              border-radius: 4px;">
+            <thead>
+                <tr>
+                    <th>Subtotal</th>
+                    <th style="text-align: center;">Item ({{ $sale->item()->sum('quantity') }})</th>
+                    <th>&nbsp;</th>
+                    <th style="text-align: right;">{{ number_format($sale->total) }}</th>
+
+                </tr>
+            </thead>
+
+        </table>
+
+        <p style="margin-top: 5px">Discount: {{ $discount }}</p>
+        <p style="margin-top: 5px">Total: {{ ($sale->total) - ($discount) }}</p>
+        <p style="margin-top: 5px">Payment: {{ $payment }}</p>
+        <P style="margin-top: 5px">Payment Due: {{ $payment_due }}</P>
+
+        <button id="btnPrint" class="hidden-print " style="margin-top: 20px;">Print</button>
+
+    </section>
+
+    <script>
+        const $btnPrint = document.querySelector("#btnPrint");
+        $btnPrint.addEventListener("click", () => {
+            window.print();
+        });
+    </script>
 </body>
+
 </html>
+

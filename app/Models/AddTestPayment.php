@@ -13,7 +13,7 @@ class AddTestPayment extends Model
         'appointment_id',
         'total',
         'pay_amount',
-        'date',
+        // 'date',
     ];
 
     public function appointment()

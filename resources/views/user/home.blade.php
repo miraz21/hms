@@ -8,17 +8,17 @@
 
   <meta name="copyright" content="MACode ID, https://macodeid.com/">
 
-  <title>Rezwan Molla General Hospital</title>
+  <title>Razon Mollah Specialized Heart Center</title>
 
-  <link rel="stylesheet" href="{{ asset('assets/css/maicons.css') }}">
+  <link rel="stylesheet" href="../assets/css/maicons.css">
 
-  <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+  <link rel="stylesheet" href="../assets/css/bootstrap.css">
 
-  <link rel="stylesheet" href="{{ asset('assets/vendor/owl-carousel/css/owl.carousel.css') }}">
+  <link rel="stylesheet" href="../assets/vendor/owl-carousel/css/owl.carousel.css">
 
-  <link rel="stylesheet" href="{{ asset('assets/vendor/animate/animate.css') }}">
+  <link rel="stylesheet" href="../assets/vendor/animate/animate.css">
 
-  <link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}">
+  <link rel="stylesheet" href="../assets/css/theme.css">
 </head>
 <body>
 
@@ -50,11 +50,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
       <div class="container">
-        <a class="navbar-brand" href="{{url('/')}}">
-            <span class="text-primary">
-                <img style="height:50px; width:50px;" src="{{ asset('image/RMGH.png') }}" alt="image">
-            </span>
-        </a>
+      <a class="navbar-brand" href="{{url('/')}}"><span class="text-primary"><img style="height:50px; width:50px;" src="image/RMGH.png" alt="image"></a>
 
         <form action="#">
           <div class="input-group input-navbar">
@@ -89,8 +85,11 @@
             @if(Route::has('login'))
 
             @auth
+            <li class="nav-item">
+              <a class="nav-link" style="background-color:greenyellow; color: white;" href="{{url('myappointment')}}">MyAppointment</a>
+            </li>
             <x-app-layout>
-
+ 
             </x-app-layout>
             @else
             <li class="nav-item">
@@ -106,8 +105,13 @@
       </div> <!-- .container -->
     </nav>
   </header>
-
-  <div class="page-hero bg-image overlay-dark" style="background-image: url({{ asset('image/hospital.jpg') }});">
+  @if(session()->has('message'))
+  <div class="alert alert-success">
+  <button type="button" class="close" data-dismiss="alert">+</button>
+  {{session()->get('message')}}
+  </div>
+  @endif
+  <div class="page-hero bg-image overlay-dark" style="background-image: url(image/hospital.jpg);">
     <div class="hero-section">
       <div class="container text-center wow zoomIn">
       <h1 class="display-4" style="line-height: 0.4">Rezwan Molla General Hospital</h1>
@@ -161,7 +165,7 @@
           </div>
           <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
             <div class="img-place custom-img-1">
-              <img src="{{ asset('assets/img/bg-doctor.png') }}" alt="">
+              <img src="../assets/img/bg-doctor.png" alt="">
             </div>
           </div>
         </div>
@@ -176,22 +180,22 @@
    <!-- .page-section -->
    @include('user.latest')
 
-  <div class="page-section banner-home bg-image" style="background-image: url({{ asset('assets/img/banner-pattern.svg') }});">
+  <div class="page-section banner-home bg-image" style="background-image: url(../assets/img/banner-pattern.svg);">
     <div class="container py-5 py-lg-0">
       <div class="row align-items-center">
         <div class="col-lg-4 wow zoomIn">
           <div class="img-banner d-none d-lg-block">
-            <img src="{{ asset('assets/img/mobile_app.png') }}" alt="">
+            <img src="../assets/img/mobile_app.png" alt="">
           </div>
         </div>
         <div class="col-lg-8 wow fadeInRight">
           <h1 class="font-weight-normal mb-3">Get easy access of all features using One Health Application</h1>
-          <a href="#"><img src="{{ asset('assets/img/google_play.svg') }}" alt=""></a>
-          <a href="#" class="ml-2"><img src="{{ asset('assets/img/app_store.svg') }}" alt=""></a>
+          <a href="#"><img src="../assets/img/google_play.svg" alt=""></a>
+          <a href="#" class="ml-2"><img src="../assets/img/app_store.svg" alt=""></a>
         </div>
       </div>
     </div>
-  </div>
+  </div> 
   <!-- .banner-home -->
   @include('user.appointment')
   <footer class="page-footer">
@@ -225,9 +229,9 @@
         </div>
         <div class="col-sm-6 col-lg-3 py-3">
           <h5>Contact</h5>
-          <p class="footer-link mt-2">351 Willow Street Franklin, MA 02038</p>
-          <a href="#" class="footer-link">701-573-7582</a>
-          <a href="#" class="footer-link">healthcare@temporary.net</a>
+          <p class="footer-link mt-2">Faridpur Sadar, Faridpur</p>
+          <a href="#" class="footer-link">+8801700778300</a>
+          <a href="#" class="footer-link">rmninursinginstitute@gmail.com</a>
 
           <h5 class="mt-3">Social Media</h5>
           <div class="footer-sosmed mt-3">
@@ -246,15 +250,15 @@
     </div>
   </footer>
 
-<script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
+<script src="../assets/js/jquery-3.5.1.min.js"></script>
 
-<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+<script src="../assets/js/bootstrap.bundle.min.js"></script>
 
-<script src="{{ asset('assets/vendor/owl-carousel/js/owl.carousel.min.js') }}"></script>
+<script src="../assets/vendor/owl-carousel/js/owl.carousel.min.js"></script>
 
-<script src="{{ asset('assets/vendor/wow/wow.min.js') }}"></script>
+<script src="../assets/vendor/wow/wow.min.js"></script>
 
-<script src="{{ asset('assets/js/theme.js') }}"></script>
-
+<script src="../assets/js/theme.js"></script>
+  
 </body>
 </html>

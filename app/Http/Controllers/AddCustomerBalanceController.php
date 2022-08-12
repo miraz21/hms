@@ -8,6 +8,10 @@ use App\Models\Appointment;
 
 use App\Models\Customer;
 
+ use App\Models\Sale;
+
+ use App\Models\SaleItem;
+
 use App\Models\AddCustomerBalance;
 
 use Illuminate\Support\Facades\Auth;
@@ -38,9 +42,11 @@ class AddCustomerBalanceController extends Controller
 }
       public function create()
       {
-          $appointment=Appointment::all();
-          $addcustomerbalances=AddCustomerBalance::all();
-          return view('addcustomerbalance.create', compact('appointment'));
+        $appointment=Appointment::all();
+        $saleitems=SaleItem::all();
+        $sales=Sale::all();
+        $addcustomerbalance=AddCustomerBalance::all();
+        return view('addcustomerbalance.create', compact('saleitems','appointment','sales'));
       }
   
       public function store(Request $request)
@@ -48,24 +54,23 @@ class AddCustomerBalanceController extends Controller
           try{
           $request->validate([
           'appointment_id'=>'required',
-          'total'=>'required',
+          'sale_id'=>'required',
           'pay_amount'=>'required',
-          'date'=>'required',
+          // 'date'=>'required',
            ]);
   
            $data=[
           'appointment_id'=>$request->input('appointment_id'),
-          'total'=>$request->input('total'),
+          'sale_id'=>$request->input('sale_id'),
           'pay_amount'=>$request->input('pay_amount'),
-          'date'=>$request->input('date'),
+          // 'date'=>$request->input('date'),
           ];
   
-          AddCustomerBalance::create($data);
-        //   Customer::where('id',$request->customer_id)->increment(['total','pay_amount',
-        //   $request->total, $request->pay_amount]);
+          // AddCustomerBalance::create($data);
+          // Customer::where('id',$request->customer_id)->increment(['pay_amount', $request->pay_amount]);
 
-        $cus = Customer::where('appointment_id', $request->appointment_id)->first();
-        $cus->increment('pay_amount', $request->pay_amount);
+         $cus = Customer::where('appointment_id', $request->appointment_id)->first();
+         $cus->increment('pay_amount', $request->pay_amount);
         $cus->increment('total', $request->total);
         $due_amount = $cus->total - $cus->pay_amount;
         $cus->update(['due_amount' => $due_amount]);

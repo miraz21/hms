@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-    <title>Hospital Management</title>
+    <title>Razon Mollah Specialized Heart Center</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -44,7 +45,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                  <img style="height:50px; width:50px;" src="{{ asset('image/RMGH.png') }}" alt="image">
+                  <img style="height:50px; width:50px;" src="{{ asset('image/RMGH 1.PNG') }}" alt="image">
                 </div>
                 <div class="sidebar-brand-text mx-3"> RMGH </div>
             </a>
@@ -54,7 +55,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{ url('/') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -71,7 +72,6 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNine"
                     aria-expanded="true" aria-controls="collapseNine">
-                    <i class="fas fa-fw fa-cog"></i>
                     <span>-- Reception --</span>
                </a>
             </li>
@@ -80,10 +80,11 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix"
                     aria-expanded="true" aria-controls="collapseSix">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Appointment List</span>
+                    <span> Appointment </span>
                 </a>
                 <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ url('showappointment') }}">Online Appointment</a>
                         <a class="collapse-item" href="{{route('appointment.index')}}">Appointment Form</a>
                         <!-- <a class="collapse-item" href="">Appointment Form</a> -->
                     </div>
@@ -94,12 +95,12 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTen"
                     aria-expanded="true" aria-controls="collapseTen">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Hospital Costing</span>
+                    <span>Hospital Document</span>
                 </a>
                 <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{route('hscost.index')}}">Add Hospital Cost</a>
-                        <a class="collapse-item" href="{{ route('hospitaldailylist') }}">Hospital Daily List </a>
+                        <a class="collapse-item" href="{{ route('hospitaldailylist') }}">Hospital Daily Report </a>
                         {{-- <a class="collapse-item" href="{{ route('hospitalreport.index') }}"></a> --}}
                     </div>
                 </div>
@@ -114,9 +115,9 @@
                 <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{route('testinfo.index')}}">Test Info</a>
-                        <a class="collapse-item" href="{{route('pathological.index')}}">Pathological Test</a>
-                        <a class="collapse-item" href="{{ route('pathologicaltestpayment.index') }}">Patient Payment</a>
-                        <a class="collapse-item" href="{{ route('addtestpayment.index') }}">Add Test Payment</a>
+                        <a class="collapse-item" href="{{route('pathological.index')}}">Pathological Test Report</a>
+                        <a class="collapse-item" href="{{ route('pathologicaltestpayment.index') }}">Test Payment</a>
+                        <a class="collapse-item" href="{{ route('addtestpayment.index') }}">Due Test Payment</a>
                     </div>
                 </div>
             </li>
@@ -125,13 +126,13 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight"
                     aria-expanded="true" aria-controls="collapseEight">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Patient Details</span>
+                    <span>Patient Information</span>
                 </a>
                 <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{route('patient.index')}}">Admit Patient</a>
-                        <a class="collapse-item" href="{{route('patientpayment.index')}}">Patient Payment</a>
-                        <a class="collapse-item" href="{{ route('patientlist.view') }}">Patient List</a>
+                    <a class="collapse-item" href="{{route('patient.index')}}">Patient Admit Form</a>
+                        <a class="collapse-item" href="{{route('patientpayment.index')}}">Due Payment</a>
+                        <a class="collapse-item" href="{{ route('patientlist.view') }}">Patient Report</a>
                     </div>
                 </div>
             </li>
@@ -139,7 +140,6 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEleven"
                     aria-expanded="true" aria-controls="collapseEleven">
-                    <i class="fas fa-fw fa-cog"></i>
                     <span>-- Doctor --</span>
                </a>
             </li>
@@ -148,11 +148,11 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Doctor Details</span>
+                    <span>Doctor Document</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{route('doctor.index')}}">Doctor List</a>
+                        <a class="collapse-item" href="{{route('doctor.index')}}">Doctor Information</a>
                     </div>
                 </div>
             </li>
@@ -160,7 +160,6 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                     aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-fw fa-cog"></i>
                     <span>-- Pharmacy --</span>
                </a>
             </li>
@@ -191,8 +190,8 @@
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{route('saleman.index')}}">Sale Man</a>
-                        <a class="collapse-item" href="{{route('saledetail.index')}}">Sales Details</a>
-                        <a class="collapse-item" href="{{route('returnmedicine.index')}}">Return Medicine</a>
+                        <a class="collapse-item" href="{{route('sale.index')}}">Sales Details</a>
+                        <a class="collapse-item" href="{{route('returnmedicine.index')}}">Return Medicine ADD</a>
                     </div>
                 </div>
             </li>
@@ -201,12 +200,12 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
                     aria-expanded="true" aria-controls="collapseFive">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Customer Details</span>
+                    <span>Pharmacy Payment Info</span>
                 </a>
                 <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{route('customer.index')}}">Customer Balance</a>
-                        <a class="collapse-item" href="{{route('addcustomerbalance.index')}}">Customer Payment</a>
+                        <a class="collapse-item" href="{{route('customer.index')}}"> Payment Document</a>
+                        {{-- <a class="collapse-item" href="{{route('addcustomerbalance.index')}}">Customer Due Payment</a> --}}
                     </div>
                 </div>
             </li>
@@ -237,7 +236,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
+                    {{-- <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -248,7 +247,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> --}}
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -424,10 +423,7 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                               <li><a class="dropdown-item" href="#">Profile</a></li>
                               <li>
-
-
-
-                                <a class="dropdown-item" href="javascript:;" onclick="document.getElementById('logout').submit()">Logout</a>
+                            <a class="dropdown-item" href="javascript:;" onclick="document.getElementById('logout').submit()">Logout</a>
                             <form action="{{ route('logout') }}" id="logout" method="post">@csrf</form>
                             </li>
                             </ul>
@@ -526,6 +522,13 @@
 
 
      </script>
+     <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
 
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::message() !!}
@@ -534,3 +537,4 @@
 </body>
 
 </html>
+

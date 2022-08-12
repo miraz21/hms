@@ -31,10 +31,10 @@
     <label for="amount" class="form-label">Amount</label>
     <input type="number" name="amount" class="form-control" id="amount">
   </div>
-   <div class="mb-3">
+   {{-- <div class="mb-3">
     <label for="date" class="form-label">Date</label>
     <input type="date" name="date" class="form-control" id="date" >
-  </div>
+  </div> --}}
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>

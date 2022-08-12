@@ -12,6 +12,8 @@ use App\Models\PathologicalTestPayment;
 
 use Carbon\Carbon;
 
+use App\Models\Patient;
+
 use Illuminate\Http\Request;
 
 class HospitalReportController extends Controller
@@ -25,13 +27,14 @@ class HospitalReportController extends Controller
       $pathologocal_testPay = PathologicalTestPayment::whereDate('created_at',$request->date)->get();
       $appointment = Appointment::whereDate('created_at',$request->date)->select('id','appointment_fee')->get();
       $hsCost = HsCost::whereDate('created_at',$request->date)->select('id','amount')->get();
+      $patient = Patient::whereDate('created_at',$request->date)->get();
 
       $search_date = Carbon::parse($request->date)->format('d-m-Y');
       // return  Carbon::parse($customer->created_at)->format('Y-m-d');
  
       // $time = Carbon::now()->format('Y-m-d');
       // return $farmecy;
-      return view('hospitalreport.index',compact('farmecy','pathologocal_testPay','appointment','search_date','hsCost'));
+      return view('hospitalreport.index',compact('farmecy','pathologocal_testPay','appointment','search_date','hsCost','patient'));
     }
     public function dailylist()
     {

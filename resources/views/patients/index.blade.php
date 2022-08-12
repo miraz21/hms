@@ -2,7 +2,7 @@
 @section('content')
 	<div class="row clearfix page_header">
 		<div class="col-md-6">
-		<h2> Patients List </h2>		
+		<h2> Patients Admit Form </h2>		
 		</div>
 		<div class="col-md-6 text-right">
 	    <a class="btn btn-info" href="{{ route('patient.create') }}"> <i class="fa fa-plus"></i> Admit Patient </a>
@@ -29,7 +29,7 @@
 				  <th scope="col">Payment</th>
 				  <th scope="col">Due</th>
 				  <th scope="col">Date</th>
-			      {{-- <th scope="col">Action</th> --}}
+			      <th scope="col">Action</th>
 	            </tr>
 	          </thead>
 	          <tfoot>
@@ -50,9 +50,9 @@
 		      <td>{{number_format($patient->total)}}</td>
 			  <td>{{number_format($patient->pay_amount)}}</td>
 			  <td>{{number_format($patient->due_amount)}}</td>
-		      <td>{{$patient->date}}</td> 
+		      <td>{{ \Carbon\Carbon::parse($patient->created_at)->format('d-m-Y') }}</td> 
 		      <td>
-		      	{{-- <a href="" class="btn btn-primary">Edit</a> --}}
+		      	<a href="{{ route('print.patient', $patient->id) }}" class="btn btn-primary">Print</a>
 		      	<!-- <a href="{{route('patient.delete', $patient->id)}}" class="btn btn-warning">Delete</a> -->
 		      </td> 
 		    </tr>

@@ -13,7 +13,7 @@ class PathologicalTest extends Model
         'appointment_id',
         'test_info_id',
         'discount',
-        'date',
+        // 'date',
         ];
 
         public function appointment()

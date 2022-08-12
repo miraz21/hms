@@ -43,7 +43,7 @@
                       <td> {{ number_format($addtestpayment->total) }} </td>
                       <td> {{ number_format($addtestpayment->pay_amount) }} </td>
                       <!-- <td> {{ number_format(($addtestpayment->total - $addtestpayment->pay_amount) ) }} </td> -->
-					  <td>{{$addtestpayment->date}}</td> 
+					  <td>{{ \Carbon\Carbon::parse($addtestpayment->created_at)->format('d-m-Y') }}</td> 
 		              <td class="text-right">
 		             <!-- <a class="btn btn-danger" href="{{route('addtestpayment.delete', $addtestpayment->id)}}">Delete</a> -->
 		              </td> 

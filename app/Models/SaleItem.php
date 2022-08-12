@@ -16,12 +16,21 @@ class SaleItem extends Model
       'medicinedetail_id',
       'price',
       'quantity',
-      'amount'
+      'amount',
+      'date',
     ];
     public function medicinedetail()
     {
         return $this->belongsTo(MedicineDetail::class);
     }
 
+    public function customers()
+    {
+     return $this->hasMany(Customer::class);
+    }
+    public function addcustomerbalances()
+    {
+     return $this->hasMany(AddCustomerBalance::class);
+    }
 
 }

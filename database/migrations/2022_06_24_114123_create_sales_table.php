@@ -17,6 +17,7 @@ class CreateSalesTable extends Migration
             $table->id();
             $table->unsignedBigInteger("appointment_id");
             $table->decimal('total',8,2);
+            $table->string('invoice_no')->nullable();
             $table->timestamps();
         });
     }

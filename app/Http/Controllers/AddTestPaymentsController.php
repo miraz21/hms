@@ -50,14 +50,14 @@ class AddTestPaymentsController extends Controller
           'appointment_id'=>'required',
           'total'=>'required',
           'pay_amount'=>'required',
-          'date'=>'required',
+          // 'date'=>'required',
            ]);
   
            $data=[
           'appointment_id'=>$request->input('appointment_id'),
           'total'=>$request->input('total'),
           'pay_amount'=>$request->input('pay_amount'),
-          'date'=>$request->input('date'),
+          // 'date'=>$request->input('date'),
           ];
   
           AddTestPayment::create($data);

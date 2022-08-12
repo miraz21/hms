@@ -45,14 +45,14 @@ class HsCostController extends Controller
           'name'=>'required',
           'reason'=>'required',
           'amount'=>'required',
-          'date'=>'required',
+        //   'date'=>'required',
            ]);
   
            $data=[
           'name'=>$request->input('name'),
           'reason'=>$request->input('reason'),
           'amount'=>$request->input('amount'),
-          'date'=>$request->input('date'),
+        //   'date'=>$request->input('date'),
           ];
   
           HsCost::create($data);

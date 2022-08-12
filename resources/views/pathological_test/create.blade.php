@@ -36,7 +36,7 @@
   <div id="multipleRow">
   <div>
     <div class="mb-3">
-    <select class="form-select" name="test_info_id[]">
+    <select class="form-select test select2" name="test_info_id[]" id="test">
     <option value=" ">Select Test & Price</option>
     @foreach($testinfo as $item)
     <option value="{{$item->id}}">{{$item->test}} --- {{$item->price}}</option>
@@ -49,10 +49,10 @@
     </div>
   </div>
   </div>
-    <div class="mb-3">
+    {{-- <div class="mb-3">
     <label for="date" class="form-label">Date</label>
     <input type="date" name="date" class="form-control" id="date" >
-  </div>
+  </div> --}}
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>
@@ -151,5 +151,15 @@
     });
   });
   </script>
+
+  
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('#test').select2({
+          placeholder: "select Patient",
+          allowClear: true
+      });
+  });
+</script>
   
 @endsection

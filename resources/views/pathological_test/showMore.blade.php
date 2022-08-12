@@ -33,7 +33,7 @@
 		      <th scope="row">{{$key+1}}</th>
 		      <td>{{$pathologicaltest->testinfo->test}} --- {{$pathologicaltest->testinfo->price}}</td>
 		      <td>{{$pathologicaltest->discount}}</td> 
-              <td>{{$pathologicaltest->date}}</td>
+              <td>{{ \Carbon\Carbon::parse($pathologicaltest->created_at)->format('d-m-Y') }}</td>
 		    </tr>
 
 			

@@ -16,10 +16,11 @@ class CreateAddCustomerBalancesTable extends Migration
         Schema::create('add_customer_balances', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('appointment_id');
-            $table->decimal('total')->nullable();
+            $table->unsignedBigInteger('sale_id');
+            // $table->decimal('total')->nullable();
             $table->decimal('pay_amount')->nullable();
-            $table->decimal('due_amount')->nullable();
-            $table->text('date')->nullable();
+            // $table->decimal('due_amount')->nullable();
+            // $table->text('date')->nullable();
             $table->timestamps();
         });
     }

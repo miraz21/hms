@@ -18,7 +18,7 @@ class CreateAddTestPaymentsTable extends Migration
             $table->unsignedBigInteger('appointment_id');
             $table->decimal('total')->nullable();
             $table->decimal('pay_amount')->nullable();
-            $table->text('date')->nullable();
+            // $table->text('date')->nullable();
             $table->timestamps();
         });
     }

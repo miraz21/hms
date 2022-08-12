@@ -14,12 +14,12 @@
     <div class="container">
 	<div class="row">
 	<div class="col-12 col-md-12">
-	<h1 style="text-align:center; margin-bottom:50px;">Hospital Daily Report</h1>
+	<h1 style="text-align:center; margin-bottom:0px;">Hospital Daily Report</h1>
 	</div>
 	</div>
 	<div class="row">
 	<div class="col-12 col-md-12">
-	<p style="margin-left:900px;">Date: {{ \Carbon\Carbon::now()->format('d-m-Y H:i:s') }}</p>
+	<p style="margin-left:800px;">Date: {{ \Carbon\Carbon::now()->format('d-m-Y H:i:s') }}</p>
 	</div>
 	</div>
 	<div class="row mt-5">
@@ -35,7 +35,8 @@
 	</thead>
 	<tbody>
 	<tr>
-	<td>{{ $farmecy->sum('total') ?? '' }}</td>
+	<td>{{ ($farmecy->sum('pay_amount') ?? '') + ($farmecy->sum('due_amount') ?? '') }}</td>
+	{{-- <td>{{ $farmecy->sum('total') ?? '' }}</td> --}}
 	<td>{{ $farmecy->sum('pay_amount') ?? '' }}</td>
 	<td>{{ $farmecy->sum('due_amount') ?? '' }}</td>
 	</tr>
@@ -100,6 +101,36 @@
 	</table>
 	</div>
 	</div>
+
+
+	<div class="row mt-5">
+		<div class="col-2 col-md-2"></div>
+		<div class="col-8 col-md-8">
+		<p style="text-align:center;">Parment Treadment</p>
+		<table class="table table-border">
+		<thead>
+		<tr>
+		{{-- <th>S/L No</th> --}}
+		<th>Patient</th>
+		<th>Total</th>
+		<th>Payment</th>
+		<th>Due</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+		{{-- <td>{{ $loop->iteration }}</td>  --}}
+		<td>{{ count($patient) }}</td>
+		<td>{{ $patient->sum('total') }}</td>
+		<td>{{ $patient->sum('pay_amount') }}</td>
+		<td>{{ $patient->sum('due_amount') }}</td>
+		</tr>
+		</tbody>
+		</table>
+		<div class="col-2 col-md-2"></div>
+		</div>
+		</div>
+		
 	<div class="row mt-5">
 	<div class="col-12 col-md-12">
 	<p style="text-align:center;">----Good Day----</p>

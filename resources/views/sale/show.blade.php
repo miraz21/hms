@@ -25,7 +25,7 @@
                         <th scope="col">Quantity</th>
                         <th scope="col">Amount</th>
                         <th scope="col">Date</th>
-                        <th scope="col">Action</th>
+                        {{-- <th scope="col">Action</th> --}}
                     </tr>
                     </thead>
 
@@ -37,9 +37,9 @@
                             <td>{{number_format($item->price, 2)}}</td>
                             <td>{{number_format($item->quantity)}}</td>
                             <td>{{number_format($item->amount)}}</td>
-                            <td>{{$item->date}}</td>
+                            <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}</td>
                             <td>
-                                <a href="{{route('print.sale',$sale->appointment_id)}}" class="btn btn-sm btn-info">Print</a>
+                                {{-- <a href="{{route('print.sale',$sale->appointment_id)}}" class="btn btn-sm btn-info">Print</a> --}}
 
                             </td>
                         </tr>
@@ -47,7 +47,6 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <th></th>
                         <th></th>
                         <th></th>
                         <th></th>
