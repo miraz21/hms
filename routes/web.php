@@ -142,7 +142,7 @@ Route::get('/sales',[App\Http\Controllers\PrintSaleController::class, 'index']);
 Route::get('/sale_prnpriview/{cus_id}',[App\Http\Controllers\PrintSaleController::class, 'prnpriview'])->name('print.sale');
 
 
-Route::resource('sale', SaleController::class);
+Route::resource('sale', SaleController::class)->middleware('auth');
 
 Route::get('sale-print/{sale}', [SaleController::class, 'print'])->name('sale.print');
 

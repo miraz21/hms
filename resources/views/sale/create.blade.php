@@ -29,37 +29,36 @@
                 @csrf
                 <input onclick="multipleRowInsert()" type="button" value="Add" class="btn btn-primary mb-3">
 
-                {{-- <div class="row">
-                  <div class="col-md-12"><button type="button" id="btnAddNew" class="btn btn-primary">Add New</button></div>
-                </div> --}}
-                <div  id="multipleRow">
-                    <div class="mb-3">
-                        <select class="form-select" name="appointment_id" id="appointment_id">
+                <div  class="row" id="multipleRow">
+                    <div class="mb-3 col-12">
+                        <label for="appointment_id-1">Patient Name</label>
+                        <select class="form-select" name="appointment_id" id="appointment_id-1">
                             <option value=" ">Select Patient</option>
                             @foreach($appointment as $item)
                                 <option value="{{$item->id}}">{{$item->appoint_name}}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="mb-3">
-                        <select class="form-select medicine select2" name="medicinedetail_id[]"  id="medicine">
+                    <div class="mb-3 col-2">
+                        <label for="medicine-1">Medicine</label>
+                        <select class="form-select medicine select2" name="medicinedetail_id[]"  id="medicine-1" data-id="1">
                             <option value="" selected disabled>Select Medicine</option>
                             @foreach($medicinedetails as $item)
                                 <option value="{{$item->id}}">{{$item->medicinename->name}}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="mb-3">
-                        <label for="price" class="form-label">Price</label>
-                        <input onchange="totalAmnt(1)" type="number" name="price[]" class="form-control" id="price1" step="0.01">
+                    <div class="mb-3 col-2">
+                        <label for="price-1" class="form-label">Price</label>
+                        <input onchange="totalAmount(1)" type="number" name="price[]" class="form-control" id="price-1" step="0.01">
                     </div>
-                    <div class="mb-3">
-                        <label for="quantity" class="form-label">Quantity</label>
-                        <input onchange="totalAmnt(1)" type="number" name="quantity[]" class="form-control" id="quantity1" >
+                    <div class="mb-3 col-2">
+                        <label for="quantity-1" class="form-label">Quantity</label>
+                        <input onchange="totalAmount(1)" type="number" name="quantity[]" class="form-control" id="quantity-1" >
                     </div>
-                    <div class="mb-3">
-                        <label for="amount" class="form-label">Amount</label>
-                        <input  type="number" name="amount[]" class="form-control" id="amount1" >
+                    <div class="mb-3 col-2">
+                        <label for="amount-1" class="form-label">Amount</label>
+                        <input  type="number" name="amount[]" class="form-control" id="amount-1" >
                     </div>
                 </div>
 
@@ -69,64 +68,75 @@
         </div>
     </div>
 
-
-    {{--<script src="http://maxkostinevich.github.io/jquery-multifield/jquery.multifield.min.js"></script>
-
     <script>
-      $('#multipleRow').multifield({
-        section: '.group',
-        btnAdd:'#btnAddNew',
-        btnRemove:'.btnRemove'
-      });
-      </script> --}}
-    <script>
-        function totalAmnt(id){
+        function totalAmount(id){
 
-            var x= Number($('#price' + id).val());
-            var y= Number($('#quantity' + id).val());
-            $('#amount' + id).val(x*y);
+            const x = Number($('#price-' + id).val());
+            const y = Number($('#quantity-' + id).val());
+            $('#amount-' + id).val(x*y);
             console.log(x*y);
         }
         function multipleRowInsert(){
-            var len = $('#multipleRow').children().length;
-           
+            const len = $('#multipleRow').children().length;
+
             console.log(len);
-            var htmlForm = '';
-            htmlForm +='<div id="inputRows">';
-            htmlForm +='    <div class="mb-3">';
-            htmlForm +='      <select class="form-select medicine medicineId'+ (len+1) +'" name="medicinedetail_id[]" onchange="myFunction('+ (len+1) +')">';
+            let htmlForm = '';
+            htmlForm +='<div class="row" id="inputRows">';
+            htmlForm +='    <div class="mb-3 col-2">';
+            htmlForm +='<label for="medicinedetail_id-'+ (len+1) +'">Medicine</label>';
+            htmlForm +='      <select id="medicinedetail_id-'+ (len+1) +'" class="form-select medicine select2 medicineId'+ (len+1) +'" name="medicinedetail_id[]" data-id="'+(len+1)+'" onchange="myFunction('+ (len+1) +')">';
             htmlForm +='      <option value="" selected disabled>Select Medicine</option>';
             htmlForm +='      @foreach($medicinedetails as $item)';
             htmlForm +='      <option id="{{$item->id}}" value="{{$item->id}}">{{$item->medicinename->name}}</option>';
             htmlForm +='      @endforeach';
             htmlForm +='      </select>';
             htmlForm +='    </div>';
-            htmlForm +='    <div class="mb-3">';
+            htmlForm +='    <div class="mb-3 col-2">';
             htmlForm +='      <label for="price" class="form-label">Price</label>';
-            htmlForm +='      <input onchange="totalAmnt('+ (len+1) +')" type="number" name="price[]" class="form-control price" id="price'+(len+1) +'" step="0.01">';
+            htmlForm +='      <input onchange="totalAmount('+ (len+1) +')" type="number" name="price[]" class="form-control price" id="price-'+(len+1) +'" step="0.01">';
             htmlForm +='    </div>';
-            htmlForm +='    <div class="mb-3">';
+            htmlForm +='    <div class="mb-3 col-2">';
             htmlForm +='      <label for="quantity" class="form-label">Quantity</label>';
-            htmlForm +='      <input onchange="totalAmnt('+ (len+1) +')" type="number" name="quantity[]"    class="form-control" id="quantity'+ (len+1) +'">';
+            htmlForm +='      <input onchange="totalAmount('+ (len+1) +')" type="number" name="quantity[]"    class="form-control" id="quantity-'+ (len+1) +'">';
             htmlForm +='    </div>';
-            htmlForm +='    <div class="mb-3">';
+            htmlForm +='    <div class="mb-3 col-2">';
             htmlForm +='      <label for="amount" class="form-label">Amount</label>';
-            htmlForm +='      <input  type="number" name="amount[]" class="form-control" id="amount'+ (len+1) +'" >';
+            htmlForm +='      <input  type="number" name="amount[]" class="form-control" id="amount-'+ (len+1) +'" >';
             htmlForm +='    </div>';
-            htmlForm += '     <div class="mb-3">';
-            htmlForm += '      <button id="removeRow" type="button" class="btn btn-danger"> - </button>';
+            htmlForm += '     <div class="mb-3 col-2">';
+            htmlForm += '      <button id="removeRow" type="button" class="btn btn-danger mt-4"> - </button>';
             htmlForm += '    </div>';
             htmlForm +='    </div>';
 
-         
+
             $('#multipleRow').append(htmlForm);
 
-            // $(".medicineId"+(len+1)).select2({
-            //     placeholder: "select Medicine",
-            //     allowClear: true
-            // });
-            
+
             console.log('ok');
+            $(".select2").select2({
+                placeholder: "select Medicine",
+                allowClear: true
+            }).on("change", function(){
+                const medicineID = $(this).val();
+                const rowId = $(this).attr('data-id');
+
+                if(medicineID){
+                    $.ajax({
+                        type:"GET",
+                        url:"{{url('getprice')}}?medicinedetail_id="+medicineID,
+                        success:function(res){
+                            if(res){
+                                $("#price-"+rowId).val(res);
+                                console.log(res);
+                            }
+                        }
+                    });
+                }else{
+
+                    $("#price-"+rowId).empty();
+                }
+
+            });
         }
     </script>
 
@@ -141,33 +151,21 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
-            $('#appointment_id').select2({
+            $('#appointment_id-1').select2({
                 placeholder: "select Patient",
                 allowClear: true
             });
         });
     </script>
-    {{--
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $('#medicine').select2({
-          placeholder: "select Medicine",
-          allowClear: true
-        });
-      });
-      </script> --}}
 
-
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
     <script>
         $(document).ready(function() {
-            $("[id=medicine]").select2({
+            $(".select2").select2({
                 placeholder: "select Medicine",
                 allowClear: true
             }).on("change", function(){
-                var medicineID = $(this).val();
+                const medicineID = $(this).val();
+                const rowId = $(this).attr('data-id');
 
                 if(medicineID){
                     $.ajax({
@@ -175,19 +173,14 @@
                         url:"{{url('getprice')}}?medicinedetail_id="+medicineID,
                         success:function(res){
                             if(res){
-
-                                $("#price1").val(res);
+                                $("#price-"+rowId).val(res);
                                 console.log(res);
-
-
-                            }else{
-
                             }
                         }
                     });
                 }else{
 
-                    $("#price").empty();
+                    $("#price-"+rowId).empty();
                 }
 
             });
@@ -196,13 +189,7 @@
 
     <script>
         function myFunction(serial) {
-
-            //var medicineID = document.getElementById("mdata").value;
             let medicineID = $(".medicineId"+serial).val();
-
-            // console.log(selectElement.options[selectElement.selectedIndex]);
-            // console.log(x);
-
             if(medicineID){
                 $.ajax({
                     type:"GET",

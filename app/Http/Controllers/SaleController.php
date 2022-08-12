@@ -37,7 +37,7 @@ class SaleController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Application|Factory|View|RedirectResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
     {
