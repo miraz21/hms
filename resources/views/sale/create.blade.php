@@ -31,9 +31,8 @@
 
                 <div  class="row" id="multipleRow">
                     <div class="mb-3 col-12">
-                        <label for="appointment_id-1">Patient Name</label>
-                        <select class="form-select" name="appointment_id" id="appointment_id-1">
-                            <option value=" ">Select Patient</option>
+                        <label for="patientName">Patient Name</label>
+                        <select class="form-control" name="appointment_id" id="patientName">
                             @foreach($appointment as $item)
                                 <option value="{{$item->id}}">{{$item->appoint_name}}</option>
                             @endforeach
@@ -41,7 +40,7 @@
                     </div>
                     <div class="mb-3 col-2">
                         <label for="medicine-1">Medicine</label>
-                        <select class="form-select medicine select2" name="medicinedetail_id[]"  id="medicine-1" data-id="1">
+                        <select class="form-select medicine medicineName" name="medicinedetail_id[]"  id="medicine-1" data-id="1">
                             <option value="" selected disabled>Select Medicine</option>
                             @foreach($medicinedetails as $item)
                                 <option value="{{$item->id}}">{{$item->medicinename->name}}</option>
@@ -84,7 +83,7 @@
             htmlForm +='<div class="row" id="inputRows">';
             htmlForm +='    <div class="mb-3 col-2">';
             htmlForm +='<label for="medicinedetail_id-'+ (len+1) +'">Medicine</label>';
-            htmlForm +='      <select id="medicinedetail_id-'+ (len+1) +'" class="form-select medicine select2 medicineId'+ (len+1) +'" name="medicinedetail_id[]" data-id="'+(len+1)+'" onchange="myFunction('+ (len+1) +')">';
+            htmlForm +='      <select id="medicinedetail_id-'+ (len+1) +'" class="form-select medicine medicineName medicineId'+ (len+1) +'" name="medicinedetail_id[]" data-id="'+(len+1)+'" onchange="myFunction('+ (len+1) +')">';
             htmlForm +='      <option value="" selected disabled>Select Medicine</option>';
             htmlForm +='      @foreach($medicinedetails as $item)';
             htmlForm +='      <option id="{{$item->id}}" value="{{$item->id}}">{{$item->medicinename->name}}</option>';
@@ -112,9 +111,8 @@
             $('#multipleRow').append(htmlForm);
 
 
-            console.log('ok');
-            $(".select2").select2({
-                placeholder: "select Medicine",
+            $(".medicineName").select2({
+                placeholder: "Select Medicine Name",
                 allowClear: true
             }).on("change", function(){
                 const medicineID = $(this).val();
@@ -149,19 +147,13 @@
 
 
 
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('#appointment_id-1').select2({
-                placeholder: "select Patient",
-                allowClear: true
-            });
-        });
-    </script>
+
 
     <script>
         $(document).ready(function() {
-            $(".select2").select2({
-                placeholder: "select Medicine",
+            $('#patientName').select2();
+            $(".medicineName").select2({
+                placeholder: "Medicine Name",
                 allowClear: true
             }).on("change", function(){
                 const medicineID = $(this).val();
